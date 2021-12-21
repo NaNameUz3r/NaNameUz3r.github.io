@@ -55,7 +55,7 @@ author:
 
 ## => GitHub Repository (if the site is hosted by GitHub)
 ##############################
-repository: user_name/repo_name
+repository:  NaNameUz3r/NaNameUz3r.github.io 
 repository_tree: master
 
 
@@ -108,7 +108,7 @@ sources: # bootcdn (default), unpkg
 ## => Sharing
 ##############################
 sharing:
-  provider: false # false (default), "addtoany", "addthis", "custom"
+  provider: addtoany  # false (default), "addtoany", "addthis", "custom"
 
   ## AddThis
   addthis:
@@ -118,11 +118,11 @@ sharing:
 ## => Comments
 ##############################
 comments:
-  provider: false # false (default), "disqus", "gitalk", "valine", "custom"
+  provider: disqus # false (default), "disqus", "gitalk", "valine", "custom"
 
   ## Disqus
   disqus:
-    shortname: # the Disqus shortname for the site
+    shortname: # "wannahack"
 
   ## Gitalk
   # please refer to https://github.com/gitalk/gitalk for more info.
