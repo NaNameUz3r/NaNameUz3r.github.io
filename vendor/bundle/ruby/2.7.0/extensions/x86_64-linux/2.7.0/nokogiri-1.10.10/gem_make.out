@@ -1,0 +1,233 @@
+current directory: /home/kali/Documents/Repos/NaNameUz3r.github.io/vendor/bundle/ruby/2.7.0/gems/nokogiri-1.10.10/ext/nokogiri
+/usr/bin/ruby2.7 -I /usr/lib/ruby/vendor_ruby -r ./siteconf20220109-309424-1qgszo7.rb extconf.rb
+checking if the C compiler accepts ... yes
+Building nokogiri using packaged libraries.
+Using mini_portile version 2.4.0
+checking for gzdopen() in -lz... yes
+checking for iconv... yes
+************************************************************************
+IMPORTANT NOTICE:
+
+Building Nokogiri with a packaged version of libxml2-2.9.10
+with the following patches applied:
+	- 0001-Revert-Do-not-URI-escape-in-server-side-includes.patch
+	- 0002-Remove-script-macro-support.patch
+	- 0003-Update-entities-to-remove-handling-of-ssi.patch
+	- 0004-libxml2.la-is-in-top_builddir.patch
+	- 0005-Fix-infinite-loop-in-xmlStringLenDecodeEntities.patch
+
+Team Nokogiri will keep on doing their best to provide security
+updates in a timely manner, but if this is a concern for you and want
+to use the system library instead; abort this installation process and
+reinstall nokogiri as follows:
+
+    gem install nokogiri -- --use-system-libraries
+        [--with-xml2-config=/path/to/xml2-config]
+        [--with-xslt-config=/path/to/xslt-config]
+
+If you are using Bundler, tell it to use the option:
+
+    bundle config build.nokogiri --use-system-libraries
+    bundle install
+
+Note, however, that nokogiri is not fully compatible with arbitrary
+versions of libxml2 provided by OS/package vendors.
+************************************************************************
+Extracting libxml2-2.9.10.tar.gz into tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.10... OK
+Running git apply with /home/kali/Documents/Repos/NaNameUz3r.github.io/vendor/bundle/ruby/2.7.0/gems/nokogiri-1.10.10/patches/libxml2/0001-Revert-Do-not-URI-escape-in-server-side-includes.patch... OK
+Running git apply with /home/kali/Documents/Repos/NaNameUz3r.github.io/vendor/bundle/ruby/2.7.0/gems/nokogiri-1.10.10/patches/libxml2/0002-Remove-script-macro-support.patch... OK
+Running git apply with /home/kali/Documents/Repos/NaNameUz3r.github.io/vendor/bundle/ruby/2.7.0/gems/nokogiri-1.10.10/patches/libxml2/0003-Update-entities-to-remove-handling-of-ssi.patch... OK
+Running git apply with /home/kali/Documents/Repos/NaNameUz3r.github.io/vendor/bundle/ruby/2.7.0/gems/nokogiri-1.10.10/patches/libxml2/0004-libxml2.la-is-in-top_builddir.patch... OK
+Running git apply with /home/kali/Documents/Repos/NaNameUz3r.github.io/vendor/bundle/ruby/2.7.0/gems/nokogiri-1.10.10/patches/libxml2/0005-Fix-infinite-loop-in-xmlStringLenDecodeEntities.patch... OK
+Running 'configure' for libxml2 2.9.10... OK
+Running 'compile' for libxml2 2.9.10... OK
+Running 'install' for libxml2 2.9.10... OK
+Activating libxml2 2.9.10 (from /home/kali/Documents/Repos/NaNameUz3r.github.io/vendor/bundle/ruby/2.7.0/gems/nokogiri-1.10.10/ports/x86_64-pc-linux-gnu/libxml2/2.9.10)...
+************************************************************************
+IMPORTANT NOTICE:
+
+Building Nokogiri with a packaged version of libxslt-1.1.34.
+
+Team Nokogiri will keep on doing their best to provide security
+updates in a timely manner, but if this is a concern for you and want
+to use the system library instead; abort this installation process and
+reinstall nokogiri as follows:
+
+    gem install nokogiri -- --use-system-libraries
+        [--with-xml2-config=/path/to/xml2-config]
+        [--with-xslt-config=/path/to/xslt-config]
+
+If you are using Bundler, tell it to use the option:
+
+    bundle config build.nokogiri --use-system-libraries
+    bundle install
+************************************************************************
+Extracting libxslt-1.1.34.tar.gz into tmp/x86_64-pc-linux-gnu/ports/libxslt/1.1.34... OK
+Running 'configure' for libxslt 1.1.34... OK
+Running 'compile' for libxslt 1.1.34... OK
+Running 'install' for libxslt 1.1.34... OK
+Activating libxslt 1.1.34 (from /home/kali/Documents/Repos/NaNameUz3r.github.io/vendor/bundle/ruby/2.7.0/gems/nokogiri-1.10.10/ports/x86_64-pc-linux-gnu/libxslt/1.1.34)...
+checking for -llzma... yes
+checking for xmlParseDoc() in libxml/parser.h... yes
+checking for xsltParseStylesheetDoc() in libxslt/xslt.h... yes
+checking for exsltFuncRegister() in libexslt/exslt.h... yes
+checking for xmlHasFeature()... yes
+checking for xmlFirstElementChild()... yes
+checking for xmlRelaxNGSetParserStructuredErrors()... yes
+checking for xmlRelaxNGSetParserStructuredErrors()... yes
+checking for xmlRelaxNGSetValidStructuredErrors()... yes
+checking for xmlSchemaSetValidStructuredErrors()... yes
+checking for xmlSchemaSetParserStructuredErrors()... yes
+creating Makefile
+
+current directory: /home/kali/Documents/Repos/NaNameUz3r.github.io/vendor/bundle/ruby/2.7.0/gems/nokogiri-1.10.10/ext/nokogiri
+make DESTDIR\= clean
+
+current directory: /home/kali/Documents/Repos/NaNameUz3r.github.io/vendor/bundle/ruby/2.7.0/gems/nokogiri-1.10.10/ext/nokogiri
+make DESTDIR\=
+compiling html_document.c
+In file included from /usr/include/ruby-2.7.0/ruby.h:33,
+                 from ./nokogiri.h:33,
+                 from ./html_document.h:4,
+                 from html_document.c:1:
+html_document.c: In function ‘new’:
+/usr/include/ruby-2.7.0/ruby/ruby.h:2508:62: warning: cast discards ‘const’ qualifier from pointer target type [-Wcast-qual]
+ 2508 |                      (rb_scan_args_verify(fmt, varc), vars), (char *)fmt, varc)
+      |                                                              ^
+/usr/include/ruby-2.7.0/ruby/ruby.h:2340:9: note: in expansion of macro ‘rb_scan_args0’
+ 2340 |         rb_scan_args0(argc,argvp,fmt,\
+      |         ^~~~~~~~~~~~~
+html_document.c:16:3: note: in expansion of macro ‘rb_scan_args’
+   16 |   rb_scan_args(argc, argv, "0*", &rest);
+      |   ^~~~~~~~~~~~
+compiling html_element_description.c
+compiling html_entity_lookup.c
+compiling html_sax_parser_context.c
+compiling html_sax_push_parser.c
+compiling nokogiri.c
+compiling xml_attr.c
+In file included from /usr/include/ruby-2.7.0/ruby.h:33,
+                 from ./nokogiri.h:33,
+                 from ./xml_attr.h:4,
+                 from xml_attr.c:1:
+xml_attr.c: In function ‘new’:
+/usr/include/ruby-2.7.0/ruby/ruby.h:2508:62: warning: cast discards ‘const’ qualifier from pointer target type [-Wcast-qual]
+ 2508 |                      (rb_scan_args_verify(fmt, varc), vars), (char *)fmt, varc)
+      |                                                              ^
+/usr/include/ruby-2.7.0/ruby/ruby.h:2340:9: note: in expansion of macro ‘rb_scan_args0’
+ 2340 |         rb_scan_args0(argc,argvp,fmt,\
+      |         ^~~~~~~~~~~~~
+xml_attr.c:61:3: note: in expansion of macro ‘rb_scan_args’
+   61 |   rb_scan_args(argc, argv, "2*", &document, &name, &rest);
+      |   ^~~~~~~~~~~~
+compiling xml_attribute_decl.c
+compiling xml_cdata.c
+In file included from /usr/include/ruby-2.7.0/ruby.h:33,
+                 from ./nokogiri.h:33,
+                 from ./xml_cdata.h:4,
+                 from xml_cdata.c:1:
+xml_cdata.c: In function ‘new’:
+/usr/include/ruby-2.7.0/ruby/ruby.h:2508:62: warning: cast discards ‘const’ qualifier from pointer target type [-Wcast-qual]
+ 2508 |                      (rb_scan_args_verify(fmt, varc), vars), (char *)fmt, varc)
+      |                                                              ^
+/usr/include/ruby-2.7.0/ruby/ruby.h:2340:9: note: in expansion of macro ‘rb_scan_args0’
+ 2340 |         rb_scan_args0(argc,argvp,fmt,\
+      |         ^~~~~~~~~~~~~
+xml_cdata.c:23:3: note: in expansion of macro ‘rb_scan_args’
+   23 |   rb_scan_args(argc, argv, "2*", &doc, &content, &rest);
+      |   ^~~~~~~~~~~~
+compiling xml_comment.c
+In file included from /usr/include/ruby-2.7.0/ruby.h:33,
+                 from ./nokogiri.h:33,
+                 from ./xml_comment.h:4,
+                 from xml_comment.c:1:
+xml_comment.c: In function ‘new’:
+/usr/include/ruby-2.7.0/ruby/ruby.h:2508:62: warning: cast discards ‘const’ qualifier from pointer target type [-Wcast-qual]
+ 2508 |                      (rb_scan_args_verify(fmt, varc), vars), (char *)fmt, varc)
+      |                                                              ^
+/usr/include/ruby-2.7.0/ruby/ruby.h:2340:9: note: in expansion of macro ‘rb_scan_args0’
+ 2340 |         rb_scan_args0(argc,argvp,fmt,\
+      |         ^~~~~~~~~~~~~
+xml_comment.c:21:3: note: in expansion of macro ‘rb_scan_args’
+   21 |   rb_scan_args(argc, argv, "2*", &document, &content, &rest);
+      |   ^~~~~~~~~~~~
+compiling xml_document.c
+xml_document.c: In function ‘dealloc’:
+xml_document.c:49:25: warning: passing argument 2 of ‘rb_st_foreach’ from incompatible pointer type [-Wincompatible-pointer-types]
+   49 |   st_foreach(node_hash, dealloc_node_i, (st_data_t)doc);
+      |                         ^~~~~~~~~~~~~~
+      |                         |
+      |                         int (*)(xmlNode *, xmlNode *, xmlDoc *) {aka int (*)(struct _xmlNode *, struct _xmlNode *, struct _xmlDoc *)}
+In file included from /usr/include/ruby-2.7.0/ruby/intern.h:39,
+                 from /usr/include/ruby-2.7.0/ruby/ruby.h:2148,
+                 from /usr/include/ruby-2.7.0/ruby.h:33,
+                 from ./nokogiri.h:33,
+                 from ./xml_document.h:4,
+                 from xml_document.c:1:
+/usr/include/ruby-2.7.0/ruby/st.h:141:31: note: expected ‘int (*)(st_data_t,  st_data_t,  st_data_t)’ {aka ‘int (*)(long unsigned int,  long unsigned int,  long unsigned int)’} but argument is of type ‘int (*)(xmlNode *, xmlNode *, xmlDoc *)’ {aka ‘int (*)(struct _xmlNode *, struct _xmlNode *, struct _xmlDoc *)’}
+  141 | int rb_st_foreach(st_table *, st_foreach_callback_func *, st_data_t);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/ruby-2.7.0/ruby.h:33,
+                 from ./nokogiri.h:33,
+                 from ./xml_document.h:4,
+                 from xml_document.c:1:
+xml_document.c: In function ‘duplicate_document’:
+/usr/include/ruby-2.7.0/ruby/ruby.h:2508:62: warning: cast discards ‘const’ qualifier from pointer target type [-Wcast-qual]
+ 2508 |                      (rb_scan_args_verify(fmt, varc), vars), (char *)fmt, varc)
+      |                                                              ^
+/usr/include/ruby-2.7.0/ruby/ruby.h:2340:9: note: in expansion of macro ‘rb_scan_args0’
+ 2340 |         rb_scan_args0(argc,argvp,fmt,\
+      |         ^~~~~~~~~~~~~
+xml_document.c:330:6: note: in expansion of macro ‘rb_scan_args’
+  330 |   if(rb_scan_args(argc, argv, "01", &level) == 0)
+      |      ^~~~~~~~~~~~
+xml_document.c: In function ‘new’:
+/usr/include/ruby-2.7.0/ruby/ruby.h:2508:62: warning: cast discards ‘const’ qualifier from pointer target type [-Wcast-qual]
+ 2508 |                      (rb_scan_args_verify(fmt, varc), vars), (char *)fmt, varc)
+      |                                                              ^
+/usr/include/ruby-2.7.0/ruby/ruby.h:2340:9: note: in expansion of macro ‘rb_scan_args0’
+ 2340 |         rb_scan_args0(argc,argvp,fmt,\
+      |         ^~~~~~~~~~~~~
+xml_document.c:357:3: note: in expansion of macro ‘rb_scan_args’
+  357 |   rb_scan_args(argc, argv, "0*", &rest);
+      |   ^~~~~~~~~~~~
+xml_document.c: In function ‘create_entity’:
+/usr/include/ruby-2.7.0/ruby/ruby.h:2508:62: warning: cast discards ‘const’ qualifier from pointer target type [-Wcast-qual]
+ 2508 |                      (rb_scan_args_verify(fmt, varc), vars), (char *)fmt, varc)
+      |                                                              ^
+/usr/include/ruby-2.7.0/ruby/ruby.h:2340:9: note: in expansion of macro ‘rb_scan_args0’
+ 2340 |         rb_scan_args0(argc,argvp,fmt,\
+      |         ^~~~~~~~~~~~~
+xml_document.c:436:3: note: in expansion of macro ‘rb_scan_args’
+  436 |   rb_scan_args(argc, argv, "14", &name, &type, &external_id, &system_id,
+      |   ^~~~~~~~~~~~
+xml_document.c: At top level:
+xml_document.c:495:14: error: conflicting types for ‘canonicalize’; have ‘VALUE(int,  VALUE *, VALUE)’ {aka ‘long unsigned int(int,  long unsigned int *, long unsigned int)’}
+  495 | static VALUE canonicalize(int argc, VALUE* argv, VALUE self)
+      |              ^~~~~~~~~~~~
+In file included from /usr/include/features.h:472,
+                 from /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:33,
+                 from /usr/include/stdlib.h:25,
+                 from ./nokogiri.h:4,
+                 from ./xml_document.h:4,
+                 from xml_document.c:1:
+/usr/include/x86_64-linux-gnu/bits/mathcalls.h:374:1: note: previous declaration of ‘canonicalize’ with type ‘int(double *, const double *)’
+  374 | __MATHDECL_1 (int, canonicalize,, (_Mdouble_ *__cx, const _Mdouble_ *__x));
+      | ^~~~~~~~~~~~
+In file included from /usr/include/ruby-2.7.0/ruby.h:33,
+                 from ./nokogiri.h:33,
+                 from ./xml_document.h:4,
+                 from xml_document.c:1:
+xml_document.c: In function ‘canonicalize’:
+/usr/include/ruby-2.7.0/ruby/ruby.h:2508:62: warning: cast discards ‘const’ qualifier from pointer target type [-Wcast-qual]
+ 2508 |                      (rb_scan_args_verify(fmt, varc), vars), (char *)fmt, varc)
+      |                                                              ^
+/usr/include/ruby-2.7.0/ruby/ruby.h:2340:9: note: in expansion of macro ‘rb_scan_args0’
+ 2340 |         rb_scan_args0(argc,argvp,fmt,\
+      |         ^~~~~~~~~~~~~
+xml_document.c:511:3: note: in expansion of macro ‘rb_scan_args’
+  511 |   rb_scan_args(argc, argv, "03", &mode, &incl_ns, &with_comments);
+      |   ^~~~~~~~~~~~
+make: *** [Makefile:245: xml_document.o] Error 1
+
+make failed, exit code 2

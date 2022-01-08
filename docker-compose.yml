@@ -1,0 +1,15 @@
+version: "2.4"
+
+services:
+  jekyll:
+    build: .
+    volumes:
+      - .:/site
+    ports:
+      - '4000:4000'
+    command: bash -c "
+      gem install bundler
+      && bundle install
+      && touch ./file
+      && tail -f ./file
+      "
