@@ -1,7 +1,8 @@
 header:
   - titles:
       # @start locale config
-      en      : &EN       Архив
+      ru      : &RU       Архив
+      en      : &EN       Archive
       en-GB   : *EN
       en-US   : *EN
       en-CA   : *EN
@@ -26,7 +27,8 @@ header:
 
   - titles:
       # @start locale config
-      en      : &EN       "Об Авторе"
+      ru      : &RU       "Об Авторе"
+      en      : &EN       About
       en-GB   : *EN
       en-US   : *EN
       en-CA   : *EN
