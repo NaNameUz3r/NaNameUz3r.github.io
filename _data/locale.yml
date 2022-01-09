@@ -15,7 +15,7 @@ ru: &RU
   STATISTICS              : "[POST_COUNT] постов, [PAGE_COUNT] станиц."
   LICENSE_ANNOUNCE        : "Лицензировано [LICENSE]."
   POST_ON_GITHUB          : "Edit on Github"
-  FOLLOW_ME               : "Следите за мной [NAME]."
+  FOLLOW_ME               : "Мой [NAME]."
   FOLLOW_US               : "Следите за нами [NAME]."
   EMAIL_ME                : "Напишите мне письмо."
   EMAIL_US                : "Напишите нам письмо."
