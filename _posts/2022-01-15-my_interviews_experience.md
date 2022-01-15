@@ -5,7 +5,7 @@ lang: ru
 show_edit_on_github: false
 comment: true
 license: false
-modify_date: "2022-01-10"
+modify_date: "2022-01-15"
 show_subscribe: false
 comment: true
 article_header:

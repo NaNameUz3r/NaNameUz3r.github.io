@@ -1,1 +1,1 @@
-window.TEXT_SEARCH_DATA={'posts':[{'title':"О чём этот блог",'url':"/2022/01/10/about_blog.html"},{'title':"Мой лайфхак для прохождения интервью",'url':"/2022/01/15/my_interviews_experience.html"}]};
+window.TEXT_SEARCH_DATA={'posts':[{'title':"О чём этот блог",'url':"/2022/01/10/about_blog.html"},{'title':"Мой лайфхак для прохождения интервью",'url':"/2022/01/15/my_interviews_experience.html"},{'title':"Алгоритм прохождения интервью по программированию",'url':"/2022/01/15/programming_interview_algorithm.html"}]};
