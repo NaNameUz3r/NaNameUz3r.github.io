@@ -7,7 +7,6 @@ comment: true
 license: false
 modify_date: "2022-01-15"
 show_subscribe: false
-comment: true
 article_header:
   theme: dark
   type: overlay
