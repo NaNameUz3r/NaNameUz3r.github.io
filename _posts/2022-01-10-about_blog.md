@@ -1,5 +1,5 @@
 ---
-title: О чём этот блог
+title: О чём этот блог?
 tags: "Размышления"
 lang: ru
 show_edit_on_github: false
