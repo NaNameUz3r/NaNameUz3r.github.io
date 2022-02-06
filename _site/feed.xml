@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ru" /><updated>2022-02-06T22:28:41+03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Wannahack.in</title><subtitle>Врубаемся в программирование
-</subtitle><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><entry xml:lang="ru"><title type="html">Врубаемся в Декларативную модель</title><link href="http://localhost:4000/2022/02/06/hack_in_declarative_model.html" rel="alternate" type="text/html" title="Врубаемся в Декларативную модель" /><published>2022-02-06T00:00:00+03:00</published><updated>2022-02-06T00:00:00+03:00</updated><id>http://localhost:4000/2022/02/06/hack_in_declarative_model</id><content type="html" xml:base="http://localhost:4000/2022/02/06/hack_in_declarative_model.html">&lt;p&gt;Средоточие любой парадигмы.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ru" /><updated>2022-02-06T22:35:37+03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Wannahack.in</title><subtitle>Врубаемся в программирование
+</subtitle><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><entry xml:lang="ru"><title type="html">Врубаемся в Декларативную модель</title><link href="http://localhost:4000/2022/02/06/hack_in_declarative_model.html" rel="alternate" type="text/html" title="Врубаемся в Декларативную модель" /><published>2022-02-06T00:00:00+03:00</published><updated>2022-02-06T00:00:00+03:00</updated><id>http://localhost:4000/2022/02/06/hack_in_declarative_model</id><content type="html" xml:base="http://localhost:4000/2022/02/06/hack_in_declarative_model.html">&lt;p&gt;Средоточие и исток любой парадигмы программирования.
 &lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;Не без помощи ментора мне удалось пройти последний тест по предыдущему курсу. Спойлерить вопросы из теста не стану, но поверьте, 2 и них были почти Дзен коанами, ну или Concurrency коанами.&lt;/p&gt;
 
 &lt;p&gt;На этой неделе я приступил ко второму курсу, главная тема которого — &lt;em&gt;Декларативная модель программирования&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;Без изучения декларативной модели глубоко понять программирование в принципе невозможно, потому что эта модель является &lt;strong&gt;фундаментальной&lt;/strong&gt; — корнем из которого возникли все остальные парадигмы. Хорошее понимание декларативной модели автоматически дает возможность быстрее разобраться в других технологиях программирования.&lt;/p&gt;
+&lt;p&gt;Без изучения декларативной модели глубоко понять программирование в принципе невозможно, потому что эта модель является &lt;strong&gt;фундаментальной&lt;/strong&gt; — истоком, из которого возникли все остальные парадигмы. Хорошее понимание декларативной модели автоматически дает возможность быстрее разобраться в других технологиях программирования.&lt;/p&gt;
 
 &lt;h2 id=&quot;декларативная-парадигма&quot;&gt;Декларативная парадигма&lt;/h2&gt;
 
@@ -21,7 +21,7 @@
 
 &lt;h3 id=&quot;в-чем-суть&quot;&gt;В чем суть?&lt;/h3&gt;
 
-&lt;p&gt;Декларативную парадигму часто противопоставляют императивной. В императивной парадигме всё крутится вокруг &lt;em&gt;состояний&lt;/em&gt; (переменных), и мы последовательно описываем шаги, которые исполнитель (компуктер), должен выполнить для достижения нашей задачи. Короче говоря мы придумываем и подробно описываем алгоритм.&lt;/p&gt;
+&lt;p&gt;Декларативную парадигму часто противопоставляют императивной. В императивной парадигме всё крутится вокруг &lt;em&gt;состояний&lt;/em&gt; (переменных), и мы последовательно описываем шаги, которые исполнитель (компуктер), должен выполнить для решения поставленной задачи. Короче говоря мы придумываем и подробно описываем алгоритм.&lt;/p&gt;
 
 &lt;p&gt;В декларативной парадигме мы описываем сам &lt;em&gt;результат&lt;/em&gt; который хотим достичь, а не то как его достигать. Ого, скайнет?! Машины такие умные стали что мы можем сказать “хочу печеньку” и они напекут? Нет, по крайней мере пока :)&lt;/p&gt;
 
@@ -132,7 +132,7 @@
 &lt;hr /&gt;
 
 &lt;p&gt;На сегодня это всё. Как видите, декларативная модель настоящая “всему голова” программирования. Вероятно этот пост-отчет будет дополнен.
-Всех благ!&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Отчеты" /><summary type="html">Средоточие любой парадигмы.</summary></entry><entry xml:lang="ru"><title type="html">Предки суслика</title><link href="http://localhost:4000/2022/01/31/go_closely.html" rel="alternate" type="text/html" title="Предки суслика" /><published>2022-01-31T00:00:00+03:00</published><updated>2022-01-31T00:00:00+03:00</updated><id>http://localhost:4000/2022/01/31/go_closely</id><content type="html" xml:base="http://localhost:4000/2022/01/31/go_closely.html">&lt;p&gt;Продолжаем знакомиться с Go. Зачем Google разработал новый язык, и чем вдохновлялись разработчики?&lt;/p&gt;
+Всех благ!&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Отчеты" /><summary type="html">Средоточие и исток любой парадигмы программирования.</summary></entry><entry xml:lang="ru"><title type="html">Предки суслика</title><link href="http://localhost:4000/2022/01/31/go_closely.html" rel="alternate" type="text/html" title="Предки суслика" /><published>2022-01-31T00:00:00+03:00</published><updated>2022-01-31T00:00:00+03:00</updated><id>http://localhost:4000/2022/01/31/go_closely</id><content type="html" xml:base="http://localhost:4000/2022/01/31/go_closely.html">&lt;p&gt;Продолжаем знакомиться с Go. Зачем Google разработал новый язык, и чем вдохновлялись разработчики?&lt;/p&gt;
 
 &lt;!--more--&gt;
 
