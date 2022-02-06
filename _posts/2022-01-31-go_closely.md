@@ -5,7 +5,7 @@ lang: ru
 show_edit_on_github: false
 comment: true
 license: false
-modify_date: "2022-01-31"
+modify_date: "2022-02-06"
 show_subscribe: false
 article_header:
   theme: dark
