@@ -1,11 +1,10 @@
 <!DOCTYPE html><html lang="ru">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Home - Wannahack.in</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Бери и DRY, и так далее - Wannahack.in</title>
 
-<meta name="description" content="Врубаемся в программирование
-">
-<link rel="canonical" href="http://localhost:4000/"><link rel="alternate" type="application/rss+xml" title="Wannahack.in" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="description" content="Рассматриваем пару универсальных принципов разработки.">
+<link rel="canonical" href="http://localhost:4000/2022/02/13/dry_etc.html"><link rel="alternate" type="application/rss+xml" title="Wannahack.in" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
 
@@ -255,7 +254,7 @@
 </head>
   <body>
     <div class="root" data-is-touch="false">
-      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport cell cell--auto">
+      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport has-aside cell cell--auto">
 
       <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
       <div class="header__title">
@@ -304,16 +303,7 @@ c19 -42 87 -212 152 -377z"/>
         <ul><li class="navigation__item"><a href="/archive.html">Архив</a></li><li class="navigation__item"><a href="/about.html">Об Авторе</a></li><li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li></ul>
       </nav></div>
   </header>
-</div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
-
-              <div class="col-aside d-print-none js-col-aside"></div>
-
-              <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
-
-<!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Иван Закутний"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2022/02/13/dry_etc.html"><h2 itemprop="headline" class="item__header">Бери и DRY, и так далее</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Рассматриваем пару универсальных принципов разработки.</div><p><a href="/2022/02/13/dry_etc.html">Читать дальше</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+</div><div class="page__content"><div class="article__header--overlay"><div class="hero hero--dark overlay" style="background-image:url(/header_images/dry_etc.jpg);"><div class="hero__content"><div class ="main"><div class="article__info clearfix"><ul class="left-col menu"><li>
               <a class="button button--secondary button--pill button--sm"
                 href="/archive.html?tag=%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5">Программирование</a>
             </li><li>
@@ -323,143 +313,137 @@ c19 -42 87 -212 152 -377z"/>
               <a class="button button--secondary button--pill button--sm"
                 href="/archive.html?tag=%D0%A0%D0%B0%D0%B7%D0%BC%D1%8B%D1%88%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F">Размышления</a>
             </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 13, 2022</span>
-            </li></ul></div><meta itemprop="author" content="Иван Закутний"/><meta itemprop="datePublished" content="2022-02-13T00:00:00+03:00">
-    <meta itemprop="keywords" content="Программирование,Инструменты,Размышления"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2022/02/12/hack_in_declarative_model_2.html"><h2 itemprop="headline" class="item__header">Врубаемся в Декларативную модель</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Часть 2. Декларативное программирование и рекурсия.</div><p><a href="/2022/02/12/hack_in_declarative_model_2.html">Читать дальше</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5">Программирование</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%9E%D1%82%D1%87%D0%B5%D1%82%D1%8B">Отчеты</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 12, 2022</span>
-            </li></ul></div><meta itemprop="author" content="Иван Закутний"/><meta itemprop="datePublished" content="2022-02-12T00:00:00+03:00">
-    <meta itemprop="keywords" content="Программирование,Отчеты"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2022/02/06/hack_in_declarative_model.html"><h2 itemprop="headline" class="item__header">Врубаемся в Декларативную модель</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Часть 1. Средоточие и исток любой парадигмы программирования.</div><p><a href="/2022/02/06/hack_in_declarative_model.html">Читать дальше</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5">Программирование</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%9E%D1%82%D1%87%D0%B5%D1%82%D1%8B">Отчеты</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 06, 2022</span>
-            </li></ul></div><meta itemprop="author" content="Иван Закутний"/><meta itemprop="datePublished" content="2022-02-06T00:00:00+03:00">
-    <meta itemprop="keywords" content="Программирование,Отчеты"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2022/01/31/go_closely.html"><h2 itemprop="headline" class="item__header">Предки суслика</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Продолжаем знакомиться с Go. Зачем Google разработал новый язык, и чем вдохновлялись разработчики?</div><p><a href="/2022/01/31/go_closely.html">Читать дальше</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5">Программирование</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=Go">Go</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 31, 2022</span>
-            </li></ul></div><meta itemprop="author" content="Иван Закутний"/><meta itemprop="datePublished" content="2022-01-31T00:00:00+03:00">
-    <meta itemprop="keywords" content="Программирование,Go"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2022/01/30/hack_in_codding_1.html"><h2 itemprop="headline" class="item__header">Врубаемся в программирование</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Научный взгляд на программирование. Concurrency, atomicity и кое что ещё.</div><p><a href="/2022/01/30/hack_in_codding_1.html">Читать дальше</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5">Программирование</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%9E%D1%82%D1%87%D0%B5%D1%82%D1%8B">Отчеты</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 30, 2022</span>
-            </li></ul></div><meta itemprop="author" content="Иван Закутний"/><meta itemprop="datePublished" content="2022-01-30T00:00:00+03:00">
-    <meta itemprop="keywords" content="Программирование,Отчеты"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2022/01/23/how_to_google.html"><h2 itemprop="headline" class="item__header">Давай я погуглю за тебя</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Да пребудет с вами сила поиска в Google! Или как избавить своего тимлида от 80% глупых вопросов. Слышали что нибудь о так называемых google dorks? Нет? Добро пожаловать под кат!</div><p><a href="/2022/01/23/how_to_google.html">Читать дальше</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B">Инструменты</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F_%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C">Информационная_безопасность</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 23, 2022</span>
-            </li></ul></div><meta itemprop="author" content="Иван Закутний"/><meta itemprop="datePublished" content="2022-01-23T00:00:00+03:00">
-    <meta itemprop="keywords" content="Инструменты,Информационная_безопасность"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2022/01/23/go_language.html"><h2 itemprop="headline" class="item__header">Лупоглазый суслик Go.</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Заметка о первом знакомстве.</div><p><a href="/2022/01/23/go_language.html">Читать дальше</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5">Программирование</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=Go">Go</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 23, 2022</span>
-            </li></ul></div><meta itemprop="author" content="Иван Закутний"/><meta itemprop="datePublished" content="2022-01-23T00:00:00+03:00">
-    <meta itemprop="keywords" content="Программирование,Go"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2022/01/22/algorithms_complexity.html"><h2 itemprop="headline" class="item__header">Сложность и эффективность алгоритмов.</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Как правильно думать о программе, что такое временная сложность и это самое “О большое”. Давайте разбираться.</div><p><a href="/2022/01/22/algorithms_complexity.html">Читать дальше</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5">Программирование</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC%D1%8B">Алгоритмы</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=ComputerScience">ComputerScience</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 22, 2022</span>
-            </li></ul></div><meta itemprop="author" content="Иван Закутний"/><meta itemprop="datePublished" content="2022-01-22T00:00:00+03:00">
-    <meta itemprop="keywords" content="Программирование,Алгоритмы,ComputerScience"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2022/01/16/why_zettelkasen.html"><h2 itemprop="headline" class="item__header">Zettelkasten. Что это, и почему вам нужно начать вести его прямо сейчас!</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Один хороший программист, бывший участник команды разработки TON в прошлом году навел меня на такую вешь как Zettelkasten. 
-Zettelkasten (читатся, примерно Цэттелькастэн) с немецкого на английский переводится как slip-box, а на русском это что-то вроде комода с выдвижными ящиками. Ну знаете, как в детективных сериалах, такая тумба в которой лежи...</div><p><a href="/2022/01/16/why_zettelkasen.html">Читать дальше</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B">Инструменты</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 16, 2022</span>
-            </li></ul></div><meta itemprop="author" content="Иван Закутний"/><meta itemprop="datePublished" content="2022-01-16T00:00:00+03:00">
-    <meta itemprop="keywords" content="Инструменты"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2022/01/15/programming_interview_algorithm.html"><h2 itemprop="headline" class="item__header">Алгоритм прохождения интервью по программированию.</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Достаточно вольный перевод с английского полезной статьи Майкла Малиса, в которой он делится своим опытом решения алгоритмических задач с интервью по программированию.</div><p><a href="/2022/01/15/programming_interview_algorithm.html">Читать дальше</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4">Перевод</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5">Программирование</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC%D1%8B">Алгоритмы</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=ComputerScience">ComputerScience</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 15, 2022</span>
-            </li></ul></div><meta itemprop="author" content="Иван Закутний"/><meta itemprop="datePublished" content="2022-01-15T00:00:00+03:00">
-    <meta itemprop="keywords" content="Перевод,Программирование,Алгоритмы,ComputerScience"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2022/01/15/my_interviews_experience.html"><h2 itemprop="headline" class="item__header">Мой лайфхак для прохождения интервью.</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Поговорим о том как подговиться к собеседованию и что нужно держать в голове :)</div><p><a href="/2022/01/15/my_interviews_experience.html">Читать дальше</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%D0%A0%D0%B0%D0%B7%D0%BC%D1%8B%D1%88%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F">Размышления</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 15, 2022</span>
-            </li></ul></div><meta itemprop="author" content="Иван Закутний"/><meta itemprop="datePublished" content="2022-01-15T00:00:00+03:00">
-    <meta itemprop="keywords" content="Размышления"></div>
-      </article></div>
-</div><div class="layout--home"><div class="pagination"><p>12 постов, 2 станиц.</p>
-    <div class="pagination__menu">
-      <ul class="menu menu--nowrap"><li><div class="button button--secondary button--circle disabled">
-            <i class="fas fa-angle-left"></i>
-          </div></li><li>
-              <div class="button button--primary button--circle focus"><span>1</span></div>
-            </li><li>
-                <a class="button button--secondary button--circle" href="/page2"><span>2</span></a>
-              </li><li><a class="button button--secondary button--circle" href="/page2">
-            <i class="fas fa-angle-right"></i>
-          </a></li></ul>
-    </div>
-  </div></div>
-<script>/*(function () {
+            </li></ul></div><div class="article__header"><header><h1>Бери и DRY, и так далее</h1></header></div><p class="overlay__excerpt">Рассматриваем пару универсальных принципов разработки.</p></div></div>
+              </div>
+            </div><div class ="main"><div class="grid grid--reverse">
 
-})();*/
+              <div class="col-aside d-print-none js-col-aside"><aside class="page__aside js-page-aside"><div class="toc-aside js-toc-root"></div>
+</aside></div>
+
+              <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
+
+<!-- end custom main top snippet -->
+<article itemscope itemtype="http://schema.org/Article"><meta itemprop="headline" content="Бери и DRY, и так далее"><meta itemprop="author" content="Иван Закутний"/><meta itemprop="datePublished" content="2022-02-13T00:00:00+03:00">
+    <meta itemprop="keywords" content="Программирование,Инструменты,Размышления"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+
+<!-- end custom article top snippet -->
+<div class="article__content" itemprop="articleBody"><p>Рассматриваем пару универсальных принципов разработки.
+<!--more--></p>
+
+<h3 id="лучше-сухо-чем-мокро">Лучше сухо, чем мокро!</h3>
+
+<p>Аббревиатура принципа DRY расшифровывается как Don’t repeat yourself, что недвусмысленно переводится как “Не повторяйся”. Само сокращение является словом dry — сухой, и нарушение принципа окрестили как WET (мокрый) — Write everything twice (Пиши всё дважды) или We enjoy typing (Нам нравится печатать).</p>
+
+<p>Разумеется уровень влажности тут вообще не при чем :)</p>
+
+<p>Вероятно вы уже встречали упоминание DRY. О нем часто говорят в бесплатных и платных уроках программирования, но как правило речь только в контексте написания кода (programming-in-small).</p>
+
+<p>На самом деле этому универсальному принципу можно, и обязательно нужно, следовать на всех уровнях проектирования системы.</p>
+
+<h1 id="я-никогда-не-повторяюсь">Я никогда не повторяюсь</h1>
+<h3 id="неповторим-внутри">Неповторим внутри</h3>
+
+<p>Как я уже сказал, чаще всего DRY преподносят как правило, при котором мы не должны повторно использовать (копировать) код, в разные части программы. Это лишь малая доля. Фишка в том, что DRY применим к любой сущности в системе, на любом уровне абстракции.</p>
+
+<p><em>Если что-то где-то определено, оно должно быть определено только в этом месте.</em></p>
+
+<p>А что касаемо кода, то бывают случаи когда дублирование <em>оправдано</em>. Например есть две высокоуровневые функции (методы), которые производят <em>похожие</em> вычисления, но в разном контексте, и служат разным целям (всякие проверки истинности, etc).</p>
+
+<h3 id="неповторим-снаружи">Неповторим снаружи</h3>
+
+<p>В проектировании (programming-in-large) DRY работает аналогично. Во-первых, если есть какой-то конкретный модуль, то его спецификация должна быть единообразной и находиться в одном месте.</p>
+
+<p>Это значит, что нельзя просто копировать этот модуль, немного его изменять и встраивать в систему. Тогда в будущем при доработке, в случае изменений одного такого “модуля-клона”, нам придется менять то же самое и во втором. А если копий три, четыре…? Вы точно думаете что сможете вспомнить о них всех, я не говорю уже о совершенно очевидном неудобстве такой архитектуры. Это полный зашквар, не надо так делать.</p>
+
+<p>Во-вторых, программные интерфейсы (api) тоже должны быть единообразными, следовать спецификации. Представьте что “внутри” модули используют по разному описанные вызовы. Внешние вызовы тоже накостыляли по другому. Чувствуете аромат? Так пахнет горящая точка опоры, когда система рухнет из за того что мы поменяли один интерфейс, или <em>забыли</em> поменять один из них, в соответствии с новыми требованиями.</p>
+
+<p>Во избежание этого можно использовать, например OpenAPI, или что-то в таком духе. Если мы разрабатываем собственный API, он должен быть корректно задокументирован и доступен <strong>в одном месте</strong> (например в конкретном репозитории команды разработки).</p>
+
+<h2 id="что-и-тут-тоже">Что, и тут тоже?</h2>
+
+<p>Мы плавно подошли к документации. Многие разработчики не любят документировать проекты, и это <strong>плохо</strong>. А если и ведут документацию то относятся очень халатно. Ctrl-c, Ctrl-v, Тяп ляп, и так сойдет!</p>
+
+<p><em>Документация тоже должна следовать принципу DRY</em>.</p>
+
+<p>На уровне комментариев кода (это ведь тоже документация), пример WET-поведения — зачем-то описывать подробными комментариями чуть ли не каждую функцию в коде. Ясный код должен говорить сам за себя и быть понятен читающему его программисту (например вам самим завтра или через неделю).</p>
+
+<p>Так зачем повторяться? Разве что код выглядит запутанным и совершенно непонятным? Если так, то это отдельная проблема и нужно решать её в первую очередь.</p>
+
+<p>На уровне документирования проекта — мы должны структурировать документы понятно, излагать информацию последовательно и, простите за тавтологию — <em>информативно</em>. Документация это не удобный случай поупражняться в графомании.</p>
+
+<p>На самом деле писать код и писать текст по сути одно и то же, разве нет?</p>
+
+<p>Мы можем подойти к этой задаче почти так же, как к разработке программы. Декомпозируйте её! Если вы хорошо понимаете документируемый проект то это не вызовет проблем. Каждый модуль, согласно DRY, описывается в одном разделе документации, API в другом, и так далее.</p>
+
+<h1 id="легко-поменять">Легко поменять</h1>
+
+<p>Ещё один очень важный принцип, залог, хорошего проектирования — <strong>ETC</strong>, или Easier to change!</p>
+
+<p>Мы все люди, и нам свойственно ошибаться в своих решениях. Разумеется и в разработке программных систем. Поэтому очень важно создавая что-то новое, или внося изменения в уже существующие части, всегда задаваться вопросом — “А будет ли в будущем это <em>легко изменить</em>?”</p>
+
+<p>Подумайте, будет ли легко вносить изменения в проект, в котором строго следуют “сухому закону” DRY? (Я пытаюсь шутить, извините!)</p>
+
+<p>Разумеется будет!</p>
+
+<p>Этому принципу осознанности ETC нужно следовать даже (особенно!) в самых малых частях разработки, вплоть до написания функции из нескольких строк кода. Будет ли она легко заменимой, исправляемой? Ясно ли она описана?</p>
+
+<hr />
+
+<p>Верно утверждать что принцип DRY является логическим продолжением ETC. Вообще <em>любой</em> подход хорошего проектирования исходит из ETC. Например, использование понятных имен переменных и функций непосредственно упрощает дальнейшее сопровождение кода.</p>
+
+<p>А если мы будем как можно больше компонентов делать <a href="/2022/02/12/hack_in_declarative_model_2.html">декларативными</a>, это поможет? Да! Архитектура будет менее запутанной, с меньшей <em>связностью</em>, и следственно более удобной в сопровождении.</p>
+
+<p>Куда не глянь, если что-то сделано хорошо, это сделано осознанными в ETC инженерами!</p>
+
+<p>Можно уйти в словоблудие и сказать, что оба эти принципа применимы не только как ценности проектирования программных систем, и исходят из более “фундаментальных” личностных качеств.</p>
+
+<p>Но я оставлю это вам как пищу для размышления.</p>
+
+</div><section class="article__sharing d-print-none"><!-- AddToAny BEGIN -->
+<div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_google_plus"></a>
+<a class="a2a_button_linkedin"></a>
+</div>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<!-- AddToAny END -->
+</section><div class="d-print-none"><footer class="article__footer"><span>Обновлено
+      <time itemprop="dateModified" datetime="2022-02-13T00:00:00+03:00">Feb 13, 2022</time>
+    </span><!-- start custom article footer snippet -->
+
+<!-- end custom article footer snippet -->
+</footer>
+<div class="article__section-navigator clearfix"><div class="previous"><span>Предыдущая статья:</span><a href="/2022/02/12/hack_in_declarative_model_2.html">Врубаемся в Декларативную модель</a></div></div></div>
+
+</div>
+
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    $(function() {
+      var $this ,$scroll;
+      var $articleContent = $('.js-article-content');
+      var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+      var scroll = hasSidebar ? '.js-page-main' : 'html, body';
+      $scroll = $(scroll);
+
+      $articleContent.find('.highlight').each(function() {
+        $this = $(this);
+        $this.attr('data-lang', $this.find('code').attr('data-lang'));
+      });
+      $articleContent.find('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').each(function() {
+        $this = $(this);
+        $this.append($('<a class="anchor d-print-none" aria-hidden="true"></a>').html('<i class="fas fa-anchor"></i>'));
+      });
+      $articleContent.on('click', '.anchor', function() {
+        $scroll.scrollToAnchor('#' + $(this).parent().attr('id'), 400);
+      });
+    });
+  });
+})();
 </script>
-
-
-
 </div><section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
 
 <!-- end custom main bottom snippet -->
@@ -1022,6 +1006,68 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
 /*(function () {
 
 })();*/
+</script><script>
+  /* toc must before affix, since affix need to konw toc' height. */(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  var TOC_SELECTOR = window.TEXT_VARIABLES.site.toc.selectors;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window);
+    var $articleContent = $('.js-article-content');
+    var $tocRoot = $('.js-toc-root'), $col2 = $('.js-col-aside');
+    var toc;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+    var hasToc = $articleContent.find(TOC_SELECTOR).length > 0;
+
+    function disabled() {
+      return $col2.css('display') === 'none' || !hasToc;
+    }
+
+    tocDisabled = disabled();
+
+    toc = $tocRoot.toc({
+      selectors: TOC_SELECTOR,
+      container: $articleContent,
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      tocDisabled = disabled();
+      toc && toc.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window), $pageFooter = $('.js-page-footer');
+    var $pageAside = $('.js-page-aside');
+    var affix;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+
+    affix = $pageAside.affix({
+      offsetBottom: $pageFooter.outerHeight(),
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      scroll: hasSidebar ? $('.js-page-main').children() : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      affix && affix.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+    window.pageAsideAffix = affix;
+  });
+})();
 </script>
     </div>
     <script>(function () {
