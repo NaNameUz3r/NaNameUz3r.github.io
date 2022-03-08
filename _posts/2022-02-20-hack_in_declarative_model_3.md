@@ -54,7 +54,7 @@ article_header:
 Например, "декларативная" рекурсивная функция вычисляющая длину списка на Python будет выглядеть как-то так:
 
  
-    list_length(some_list):
+    def list_length(some_list):
         if some_list == []
             return 0
         
@@ -90,7 +90,7 @@ article_header:
 
 Рекурсивная-итеративная функция вычисления длины списка будет выглядеть так:
 
-    iter_list_length(i, some_list):
+    def iter_list_length(i, some_list):
         if some_list == []:
             return 0
         
@@ -142,7 +142,7 @@ article_header:
 
 Тогда функция, основанная на таком типе будет иметь структуру:
 
-    length_1(some_list):
+    def length_1(some_list):
         if some_list == []:
             return 0
         
@@ -166,7 +166,7 @@ article_header:
 
 Функция:
 
-    length_2(some_list):
+    def length_2(some_list):
         if some_list == []:
             return 0
         

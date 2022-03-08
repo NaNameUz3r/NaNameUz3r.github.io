@@ -1,5 +1,223 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ru" /><updated>2022-02-27T22:44:29+03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Wannahack.in</title><subtitle>Врубаемся в программирование
-</subtitle><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><entry xml:lang="ru"><title type="html">Врубаемся в Декларативную модель</title><link href="http://localhost:4000/2022/02/27/hack_in_declarative_model_4.html" rel="alternate" type="text/html" title="Врубаемся в Декларативную модель" /><published>2022-02-27T00:00:00+03:00</published><updated>2022-02-27T00:00:00+03:00</updated><id>http://localhost:4000/2022/02/27/hack_in_declarative_model_4</id><content type="html" xml:base="http://localhost:4000/2022/02/27/hack_in_declarative_model_4.html">&lt;p&gt;Часть 4. Рекурсивные типы и прочие Декларативные джедайские техники.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ru" /><updated>2022-03-09T02:29:39+03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Wannahack.in</title><subtitle>Врубаемся в программирование
+</subtitle><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><entry xml:lang="ru"><title type="html">Программирование высшего порядка. Процедурные абстракции.</title><link href="http://localhost:4000/2022/03/08/hack_in_declarative_model_5.html" rel="alternate" type="text/html" title="Программирование высшего порядка. Процедурные абстракции." /><published>2022-03-08T00:00:00+03:00</published><updated>2022-03-08T00:00:00+03:00</updated><id>http://localhost:4000/2022/03/08/hack_in_declarative_model_5</id><content type="html" xml:base="http://localhost:4000/2022/03/08/hack_in_declarative_model_5.html">&lt;p&gt;Врубаемся в Декларативную модель — Часть 5. 
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;колдуем-по-взрослому&quot;&gt;Колдуем по взрослому&lt;/h2&gt;
+
+&lt;p&gt;Программирование высшего порядка. Что может прийти на ум сперва…&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/high_order.jpg&quot; alt=&quot;АрхиКодер!&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;center&gt;Архи-кодер владеющий программированием высшего порядка&lt;/center&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;А теперь серьезно. Программирование высшего порядка — это такие методы программирования с использованием процедур (функций) высшего порядка (или “первого” класса). Ага! А что это за порядок такой, если речь не про сакрально-волшебные сверхсилы просветленного программиста?&lt;/p&gt;
+
+&lt;p&gt;Сперва нужно рассмотреть такую штуку, как &lt;em&gt;лексическое замыкание&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Собственно, замыкание — это такая функция, в которой есть ссылки на объекты (например переменные), объявленные вне тела этой функции. В коде это выглядит как объявление функции в другой функции. Вот эта последняя, “внутренняя” функция, фактически имеет доступ ко внешним, по отношению к ней объектам — переменным объявленным в теле “функции-обертки”, её аргументам.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Бугурт алерт!&lt;/strong&gt; Здесь и далее примеры на пайтонопсевдокоде! Помните, что мы сейчас изучаем Декларативную модель, &lt;em&gt;т е о р и ю&lt;/em&gt;, а не прикладную практику. Это всё техники, реализация которых на одном языке будет выглядеть так, на другом иначе.&lt;/p&gt;
+
+&lt;p&gt;Пример:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# &quot;замыкающая&quot;, внешняя функция
+def mad_printer(some_new_law):
+
+    # вложенная функция
+    def actual_printer():
+        print(some_new_law)
+
+    return actual_printer
+
+emergency_law = mad_printer(&quot;freedom is slavery&quot;)
+emergency_law()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;На выходе будет получена строка, переданная в замыкающую функцию - “freedom is slavery”.&lt;/p&gt;
+
+&lt;p&gt;Хотя функция actual_printer и не имеет в своем теле переменной some_new_law, мы видим что такой код работает без проблем. Можно сказать, что в примере выше мы привязываем определенное замыкание к переменной emergency_law. И это замыкание включает в себя &lt;em&gt;возвращаемую функцию actual_printer и доступное ей окружение&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p class=&quot;info&quot;&gt;Замыкание — это некоторая форма &lt;em&gt;записи&lt;/em&gt; которая хранит в себе &lt;em&gt;функцию первого порядка&lt;/em&gt; вместе с её окружением.&lt;/p&gt;
+
+&lt;p&gt;Ладно, ладно. А что такое функция первого порядка, не только в декларативной модели, а в программировании вообще?&lt;/p&gt;
+
+&lt;p&gt;Можно сказать, что система (язык программирования) имеет функции первого &lt;em&gt;класса&lt;/em&gt;, если функции рассматриваются как &lt;em&gt;объекты первого класса&lt;/em&gt;. Объект первого класса — это “элементы”, а по сути типы, которые могут передаваться как параметры, возвращаться их функций или присваиваться как значение переменным.&lt;/p&gt;
+
+&lt;p&gt;Иными словами, функция первого класса означает, что есть такой тип как функция, и любая реально объявляемая функция автоматически становится значением соответствующего типа.&lt;/p&gt;
+
+&lt;p&gt;Сам термин &lt;em&gt;высшего порядка&lt;/em&gt; исходит от концепции &lt;em&gt;порядка процедуры&lt;/em&gt;. Если у какой то процедуры в аргументах нет других процедур — это функция нулевого порядка. Процедура, у которой есть хотя бы один аргумент-процедура — процедура первого порядка. Порядок процедуры можно определить как n + 1, если у этой процедуры есть хотя бы один аргумент n порядка, и нет других аргументов &lt;em&gt;более высокого порядка&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Получатся что функция может быть функцией первого класса, так как в системе есть вышеупомянутые критерии, но может не быть функцией первого порядка, если не имеет в аргументах других функций. В таком случае это, можно сказать, функция первого класса нулевого порядка :)&lt;/p&gt;
+
+&lt;p&gt;Короче говоря, программирование высшего порядка, по сути, это о том что процедуры могут быть любого порядка. Никакой магии, но надеюсь вы уже начали понимать, что потенциал у этой техники очень большой.&lt;/p&gt;
+
+&lt;h2 id=&quot;основные-заклинания&quot;&gt;Основные заклинания&lt;/h2&gt;
+
+&lt;p&gt;В основе всех программистских техник высшего порядка лежат следующие четыре операции:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Процедурная абстракция;&lt;/li&gt;
+  &lt;li&gt;Обобщение;&lt;/li&gt;
+  &lt;li&gt;Инстанцирование;&lt;/li&gt;
+  &lt;li&gt;Встраивание.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;процедурная-абстракция&quot;&gt;Процедурная абстракция&lt;/h3&gt;
+
+&lt;p&gt;На самом деле мы уже давно говорили о процедурных абстракциях. Настала пора четко декларировать термин.&lt;/p&gt;
+
+&lt;p&gt;Процедурная абстракция — это, по существу, определение процедуры. Мы оборачиваем программные инструкции в процедуру, внутрь заголовка процедуры, и в результате получаем блок кода (процедурное значение — замыкание), который не выполняется до тех пор, пока не будет вызван.&lt;/p&gt;
+
+&lt;p&gt;Вызов процедуры приводит к тому же результату, к которому приведет выполнение инструкций из её тела.&lt;/p&gt;
+
+&lt;p&gt;У процедурных абстракций существуют параметры, которые влияют на выполнение тела процедуры.&lt;/p&gt;
+
+&lt;p&gt;Фактически это основа основ парадигмы программирования высшего порядка, поддерживается во многих языках, а так же лежит в основе ООП.&lt;/p&gt;
+
+&lt;p class=&quot;info&quot;&gt;Процедурные абстракции позволяют представить любую программную логику как значение процедуры.&lt;/p&gt;
+
+&lt;h3 id=&quot;обобщение&quot;&gt;Обобщение&lt;/h3&gt;
+
+&lt;p&gt;Обобщить функцию — обозначает, что любая операция или значение может становиться &lt;em&gt;аргументом в теле функции&lt;/em&gt;. Мы абстрагируем эту сущность от тела функции, а её (сущности) значение задается когда функция явно вызывается. Каждый раз, при вызове обобщенной функции, может задаваться другая сущность.&lt;/p&gt;
+
+&lt;p&gt;Вернемся назад к итеративным вычислениям, и разберем обобщение на примере функции, суммирующей значения элементов списка. Например, мы можем написать такую декларативную функцию:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def function summary_list_values(some_list)
+    if some_list == []:
+        return 0
+    end
+
+    list_head = some_list[0]
+    list_tail = some_list[1:]
+    return list_head + summary_list_values(list_tail)
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Тут есть два нейтральных элемента: 0, который мы возвращаем если some_list опустел, и операция сложения. Эти нейтральные элементы можно обобщить, сделав более универсальную функцию. Например, из примера выше можно сделать функцию FoldR. Такая функция есть во многих функциональных языках, это &lt;em&gt;функция-свертка&lt;/em&gt;, схема рекурсивных вызовов которой раскручивается в цепочку, пока не будет достигнуто самое право, по сути последнее в списке, значение, после чего начнутся сами вычисления. Есть ещё FoldL, в которой вычисления начинаются СРАЗУ, то есть с “левой ассоциацией”, считаем сразу и не ждем “правого конца”.&lt;/p&gt;
+
+&lt;p&gt;Обобщим функцию, которую написали ранее следующим образом:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def FoldR(some_list, some_function, some_element)
+    if some_list == []:
+        return some_element
+    end
+
+    list_head = some_list[0]
+    list_tail = some_list[1:]
+    return some_function(list_head, FoldR(list_tail, some_function, some_element))
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Обобщенная функция может получать на вход не только список, а функцию, которой будут обрабатываться вычисления среди элементов, и нейтральный элемент some_element. Эту функцию можно использовать для любых похожих ассоциативных вычислений, когда порядок аргументов some_function не важен для результата.&lt;/p&gt;
+
+&lt;h3 id=&quot;инстанцирование&quot;&gt;Инстанцирование&lt;/h3&gt;
+
+&lt;p&gt;О, это очень классная штука! Инстанцирование обозначает возможность возвращать процедуру\функцию как результата вызова другой процедуры\функции. 
+Инстанцирование реализуется с помощью &lt;em&gt;фабрик&lt;/em&gt; или &lt;em&gt;генераторов функций&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Очень простой и грубый пример:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# генератор
+def factory_function(calc_function):
+    def inner_function(x,y):
+        return calc_function(x,y)
+    return inner_function
+
+# какая то функция с вычислениями, которую скормим генератору
+def addition(a,b):
+    return a+b
+
+# генерируем функцию
+f = factory_function(addition)
+
+# вернет 2
+print(f(1, 1))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Очевидно что вычисления и логика внутри генератора может быть намного сложнее. Что нам это вообще дает? В первую очередь, это дает гибкость реализации каких то частей программы, которые если нужно мы можем менять на лету без особых проблем.&lt;/p&gt;
+
+&lt;p&gt;Например, у нас может быть универсальная функция-фабрика для сортировки списков. Мы можем передавать в неё конкретный алгоритм сортировки, получая на выходе функцию, реализующую этот алгоритм.&lt;/p&gt;
+
+&lt;h3 id=&quot;встраивание&quot;&gt;Встраивание&lt;/h3&gt;
+
+&lt;p&gt;Примером реализации техники встраивания являются &lt;em&gt;ленивые&lt;/em&gt; вычисления. Это такие вычисления, когда вместо того, чтобы вычислять сразу всё (жадно), генерируется лишь необходимый “кусок” данных. Иными словами, техника встраивания заключается в постепенном выстраивании структуры данных, по мере запросов к элементам этой структуры. Реализуется это, собственно “встраиванием” в структуру данных некоторого кода, который генерирует соответствующие структуре и запросу данные.&lt;/p&gt;
+
+&lt;h2 id=&quot;абстракция-цикла&quot;&gt;Абстракция цикла&lt;/h2&gt;
+
+&lt;p&gt;Ранее мы разбирали рекурсии и итеративные вычисления. Грубо говоря, итеративные вычисления это и есть циклы. Но в декларативной модели описание таких вычислений выходит громоздким, так как требуются явные рекурсивные вызовы. Мы уже разобрали процедурную абстракцию и обобщение. Так почему бы не сделать циклы более лаконичными, выразительными?&lt;/p&gt;
+
+&lt;p&gt;Например, классический цикл for — это целочисленный цикл, который получает на вход четыре параметра: начальное значение, конечное значение, шак, и процедуру для вычислений в каждой итерации:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def my_for(start_value, end_value, step, procedure):
+
+    if start_value &amp;gt; end_value:
+        return
+
+    procedure(start_value)
+
+    my_for(start_value + step, end_value, step, procedure)   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Цикл, для вычислений по элементам списка, можно выразить так:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def for_list_elements(some_list, procedure):
+    if some_list == []:
+        return
+
+    list_head = some_list[0]
+    list_tail = some_list[1:]
+
+    procedure(list_head)
+    for_list_elements(list_tail, procedure)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Это всё хорошо. Но что если нам нужно сделать какие-то более прикладные вычисления, а не просто вывести данные, или применить процедуру к каждому элементу? Ну например, хотя бы снова суммировать все элементы списка, или перемножить? Помните &lt;em&gt;аккумуляторы&lt;/em&gt; из &lt;a href=&quot;/2022/02/20/hack_in_declarative_model_3.html&quot;&gt;Части 3&lt;/a&gt;?&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def my_for_acc(start_value, end_value, step, procedure, accumulator):
+    if start_value &amp;gt; end_value:
+        return accumulator
+
+    accumulator = procedure(accumulator, start_value)
+    my_for_acc(start_value + step, end_value, step, procedure, accumulator)   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Передадим туда, процедурой, например такой “сумматор”:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def my_sum(x,y):
+    return x + y
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;И вызовем как-то так:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;print(my_for_acc(1, 10, 1, my_sum, 0))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Обработка списков с аккумулятором может выглядеть так:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def for_list_elements_acc(some_list, procedure, accumulator)
+    if some_list == []:
+        return accumulator
+
+    list_head = some_list[0]
+    list_tail = some_list[1:]
+    accumulator = procedure(accumulator, list_head)
+
+    for_list_elements_acc(list_tail, procedure, accumulator)
+
+
+def my_sum(x,y)
+    return x + y
+
+
+print(for_list_elements_acc([3,2,1], my_sum, 0))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Это будет работать как функция FoldL, о которой упоминалось ранее.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Все совпадения с “реальностью” случайны. В следующий раз продолжим рассматривать всякие абстракции и учить программную науку.&lt;/p&gt;
+
+&lt;p&gt;Enough for today! See y’all. Peace and love.&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Отчеты" /><summary type="html">Врубаемся в Декларативную модель — Часть 5.</summary></entry><entry xml:lang="ru"><title type="html">Рекурсивные типы и другие Декларативные джедайские техники.</title><link href="http://localhost:4000/2022/02/27/hack_in_declarative_model_4.html" rel="alternate" type="text/html" title="Рекурсивные типы и другие Декларативные джедайские техники." /><published>2022-02-27T00:00:00+03:00</published><updated>2022-02-27T00:00:00+03:00</updated><id>http://localhost:4000/2022/02/27/hack_in_declarative_model_4</id><content type="html" xml:base="http://localhost:4000/2022/02/27/hack_in_declarative_model_4.html">&lt;p&gt;Врубаемся в Декларативную модель — Часть 4. 
 &lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;Здравствуйте! На самом деле декларативная модель сама по себе — Джедайская техника, а именно итеративная “рекурсия”. В этом посте мы скорее разберем области применения.&lt;/p&gt;
@@ -83,13 +301,13 @@
 &lt;p&gt;Спойлер к следующему посту:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Программирование высшего порядка;&lt;/li&gt;
-  &lt;li&gt;Как на самом деле работают циклы;&lt;/li&gt;
   &lt;li&gt;Опять абстракции?&lt;/li&gt;
+  &lt;li&gt;Как на самом деле работают циклы.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/no_identification.gif&quot; alt=&quot;Рекурсивные кролики&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Миру — Мир!&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Отчеты" /><summary type="html">Часть 4. Рекурсивные типы и прочие Декларативные джедайские техники.</summary></entry><entry xml:lang="ru"><title type="html">Врубаемся в Декларативную модель</title><link href="http://localhost:4000/2022/02/20/hack_in_declarative_model_3.html" rel="alternate" type="text/html" title="Врубаемся в Декларативную модель" /><published>2022-02-20T00:00:00+03:00</published><updated>2022-02-20T00:00:00+03:00</updated><id>http://localhost:4000/2022/02/20/hack_in_declarative_model_3</id><content type="html" xml:base="http://localhost:4000/2022/02/20/hack_in_declarative_model_3.html">&lt;p&gt;Часть 3. Список списков, итеративные вычисления и прочие муми-тролли. 
+&lt;p&gt;Миру — Мир!&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Отчеты" /><summary type="html">Врубаемся в Декларативную модель — Часть 4.</summary></entry><entry xml:lang="ru"><title type="html">Список списков, итеративные вычисления и прочие муми-тролли</title><link href="http://localhost:4000/2022/02/20/hack_in_declarative_model_3.html" rel="alternate" type="text/html" title="Список списков, итеративные вычисления и прочие муми-тролли" /><published>2022-02-20T00:00:00+03:00</published><updated>2022-02-20T00:00:00+03:00</updated><id>http://localhost:4000/2022/02/20/hack_in_declarative_model_3</id><content type="html" xml:base="http://localhost:4000/2022/02/20/hack_in_declarative_model_3.html">&lt;p&gt;Врубаемся в Декларативную модель — Часть 3. 
 &lt;!--more--&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;here-we-go-again&quot;&gt;Here we go again&lt;/h3&gt;
@@ -127,7 +345,7 @@
 
 &lt;p&gt;Например, “декларативная” рекурсивная функция вычисляющая длину списка на Python будет выглядеть как-то так:&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;list_length(some_list):
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def list_length(some_list):
     if some_list == []
         return 0
     
@@ -161,7 +379,7 @@
 
 &lt;p&gt;Рекурсивная-итеративная функция вычисления длины списка будет выглядеть так:&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;iter_list_length(i, some_list):
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def iter_list_length(i, some_list):
     if some_list == []:
         return 0
     
@@ -211,7 +429,7 @@
 
 &lt;p&gt;Тогда функция, основанная на таком типе будет иметь структуру:&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;length_1(some_list):
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def length_1(some_list):
     if some_list == []:
         return 0
     
@@ -236,7 +454,7 @@
 
 &lt;p&gt;Функция:&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;length_2(some_list):
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def length_2(some_list):
     if some_list == []:
         return 0
     
@@ -316,7 +534,7 @@
 
 &lt;p&gt;И вот ещё повторим — хотя в итеративных вычислениях мы не проваливаемся в стек “в глубину”, память потенциально может кончиться ещё как! Мы “разматываем” состояние “в ширину”.&lt;/p&gt;
 
-&lt;p&gt;Спасибо за внимание.&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Отчеты" /><summary type="html">Часть 3. Список списков, итеративные вычисления и прочие муми-тролли.</summary></entry><entry xml:lang="ru"><title type="html">Бери и DRY, и так далее</title><link href="http://localhost:4000/2022/02/13/dry_etc.html" rel="alternate" type="text/html" title="Бери и DRY, и так далее" /><published>2022-02-13T00:00:00+03:00</published><updated>2022-02-13T00:00:00+03:00</updated><id>http://localhost:4000/2022/02/13/dry_etc</id><content type="html" xml:base="http://localhost:4000/2022/02/13/dry_etc.html">&lt;p&gt;Рассматриваем пару универсальных принципов разработки.
+&lt;p&gt;Спасибо за внимание.&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Отчеты" /><summary type="html">Врубаемся в Декларативную модель — Часть 3.</summary></entry><entry xml:lang="ru"><title type="html">Бери и DRY, и так далее</title><link href="http://localhost:4000/2022/02/13/dry_etc.html" rel="alternate" type="text/html" title="Бери и DRY, и так далее" /><published>2022-02-13T00:00:00+03:00</published><updated>2022-02-13T00:00:00+03:00</updated><id>http://localhost:4000/2022/02/13/dry_etc</id><content type="html" xml:base="http://localhost:4000/2022/02/13/dry_etc.html">&lt;p&gt;Рассматриваем пару универсальных принципов разработки.
 &lt;!--more--&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;лучше-сухо-чем-мокро&quot;&gt;Лучше сухо, чем мокро!&lt;/h3&gt;
@@ -386,7 +604,7 @@
 
 &lt;p&gt;Можно уйти в словоблудие и сказать, что оба эти принципа применимы не только как ценности проектирования программных систем, и исходят из более “фундаментальных” личностных качеств.&lt;/p&gt;
 
-&lt;p&gt;Но я оставлю это вам как пищу для размышления.&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Инструменты" /><category term="Размышления" /><summary type="html">Рассматриваем пару универсальных принципов разработки.</summary></entry><entry xml:lang="ru"><title type="html">Врубаемся в Декларативную модель</title><link href="http://localhost:4000/2022/02/12/hack_in_declarative_model_2.html" rel="alternate" type="text/html" title="Врубаемся в Декларативную модель" /><published>2022-02-12T00:00:00+03:00</published><updated>2022-02-12T00:00:00+03:00</updated><id>http://localhost:4000/2022/02/12/hack_in_declarative_model_2</id><content type="html" xml:base="http://localhost:4000/2022/02/12/hack_in_declarative_model_2.html">&lt;p&gt;Часть 2. Декларативное программирование и рекурсия.
+&lt;p&gt;Но я оставлю это вам как пищу для размышления.&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Инструменты" /><category term="Размышления" /><summary type="html">Рассматриваем пару универсальных принципов разработки.</summary></entry><entry xml:lang="ru"><title type="html">Декларативное программирование и рекурсия.</title><link href="http://localhost:4000/2022/02/12/hack_in_declarative_model_2.html" rel="alternate" type="text/html" title="Декларативное программирование и рекурсия." /><published>2022-02-12T00:00:00+03:00</published><updated>2022-02-12T00:00:00+03:00</updated><id>http://localhost:4000/2022/02/12/hack_in_declarative_model_2</id><content type="html" xml:base="http://localhost:4000/2022/02/12/hack_in_declarative_model_2.html">&lt;p&gt;Врубаемся в Декларативную модель — Часть 2. 
 &lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;Здравствуйте! Мы продолжаем изучать декларативную вычислительную модель. На этой неделе я добрался до более практичных тем, и начну рассказывать вам о том, как собственно устроено программирование в декларативном “стиле”.&lt;/p&gt;
@@ -498,7 +716,7 @@ end
 
 &lt;p&gt;Будьте здоровы.&lt;/p&gt;
 
-&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/white_rabbits.gif&quot; alt=&quot;Рекурсивные кролики&quot; /&gt;&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Отчеты" /><summary type="html">Часть 2. Декларативное программирование и рекурсия.</summary></entry><entry xml:lang="ru"><title type="html">Врубаемся в Декларативную модель</title><link href="http://localhost:4000/2022/02/06/hack_in_declarative_model.html" rel="alternate" type="text/html" title="Врубаемся в Декларативную модель" /><published>2022-02-06T00:00:00+03:00</published><updated>2022-02-06T00:00:00+03:00</updated><id>http://localhost:4000/2022/02/06/hack_in_declarative_model</id><content type="html" xml:base="http://localhost:4000/2022/02/06/hack_in_declarative_model.html">&lt;p&gt;Часть 1. Средоточие и исток любой парадигмы программирования.
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/white_rabbits.gif&quot; alt=&quot;Рекурсивные кролики&quot; /&gt;&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Отчеты" /><summary type="html">Врубаемся в Декларативную модель — Часть 2.</summary></entry><entry xml:lang="ru"><title type="html">Средоточие и исток любой парадигмы программирования.</title><link href="http://localhost:4000/2022/02/06/hack_in_declarative_model.html" rel="alternate" type="text/html" title="Средоточие и исток любой парадигмы программирования." /><published>2022-02-06T00:00:00+03:00</published><updated>2022-02-06T00:00:00+03:00</updated><id>http://localhost:4000/2022/02/06/hack_in_declarative_model</id><content type="html" xml:base="http://localhost:4000/2022/02/06/hack_in_declarative_model.html">&lt;p&gt;Врубаемся в Декларативную модель — Часть 1. 
 &lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;Не без помощи ментора мне удалось пройти последний тест по предыдущему курсу. Спойлерить вопросы из теста не стану, но поверьте, 2 и них были почти Дзен коанами, ну или Concurrency коанами.&lt;/p&gt;
@@ -631,7 +849,7 @@ end
 &lt;hr /&gt;
 
 &lt;p&gt;На сегодня это всё. Как видите, декларативная модель настоящая “всему голова” программирования. Вероятно этот пост-отчет будет дополнен.
-Всех благ!&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Отчеты" /><summary type="html">Часть 1. Средоточие и исток любой парадигмы программирования.</summary></entry><entry xml:lang="ru"><title type="html">Предки суслика</title><link href="http://localhost:4000/2022/01/31/go_closely.html" rel="alternate" type="text/html" title="Предки суслика" /><published>2022-01-31T00:00:00+03:00</published><updated>2022-01-31T00:00:00+03:00</updated><id>http://localhost:4000/2022/01/31/go_closely</id><content type="html" xml:base="http://localhost:4000/2022/01/31/go_closely.html">&lt;p&gt;Продолжаем знакомиться с Go. Зачем Google разработал новый язык, и чем вдохновлялись разработчики?&lt;/p&gt;
+Всех благ!&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Отчеты" /><summary type="html">Врубаемся в Декларативную модель — Часть 1.</summary></entry><entry xml:lang="ru"><title type="html">Предки суслика</title><link href="http://localhost:4000/2022/01/31/go_closely.html" rel="alternate" type="text/html" title="Предки суслика" /><published>2022-01-31T00:00:00+03:00</published><updated>2022-01-31T00:00:00+03:00</updated><id>http://localhost:4000/2022/01/31/go_closely</id><content type="html" xml:base="http://localhost:4000/2022/01/31/go_closely.html">&lt;p&gt;Продолжаем знакомиться с Go. Зачем Google разработал новый язык, и чем вдохновлялись разработчики?&lt;/p&gt;
 
 &lt;!--more--&gt;
 
@@ -921,102 +1139,4 @@ end
 
 &lt;p&gt;Для общего развития и формирования понимания потенциальной мощности поиска в Google, рекомендую ознакомиться с базой дорков собирамой исследователями информационной безопасности на сайте сообщества Offensive Security &lt;a href=&quot;https://www.exploit-db.com/google-hacking-database&quot;&gt;exploit-db.com&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Помните слова Дяди Бена, имейте совесть, уважайте свои и чужие персональные данные. Если что, карма вас обязательно настигнет!&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Инструменты" /><category term="Информационная_безопасность" /><summary type="html">Да пребудет с вами сила поиска в Google! Или как избавить своего тимлида от 80% глупых вопросов. Слышали что нибудь о так называемых google dorks? Нет? Добро пожаловать под кат!</summary></entry><entry xml:lang="ru"><title type="html">Сложность и эффективность алгоритмов.</title><link href="http://localhost:4000/2022/01/22/algorithms_complexity.html" rel="alternate" type="text/html" title="Сложность и эффективность алгоритмов." /><published>2022-01-22T00:00:00+03:00</published><updated>2022-01-22T00:00:00+03:00</updated><id>http://localhost:4000/2022/01/22/algorithms_complexity</id><content type="html" xml:base="http://localhost:4000/2022/01/22/algorithms_complexity.html">&lt;p&gt;Как правильно думать о программе, что такое временная сложность и это самое “О большое”. Давайте разбираться.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;p&gt;Недавно я сделал перевод важной статьи — &lt;a href=&quot;/2022/01/15/programming_interview_algorithm.html&quot;&gt;Алгоритм прохождения интервью по программированию&lt;/a&gt;. Это сложная тема, особенно если вы никогда до этого не изучали структуры данных, ничего не слышали про временную сложность и не занимались оценкой эффективности или не эффективности программного кода.&lt;/p&gt;
-
-&lt;h2 id=&quot;а-как-думать&quot;&gt;А как думать?&lt;/h2&gt;
-
-&lt;p&gt;Начну с того, что не зависимо от особенностей каждого человека, если мы физически и психически здоровы то “понимание” какой-то темы у нас складывается примерно одинаково. Возьмем, например, телевизор. Человек растет и развивается, видит как его родители нажимают на кнопки, из телевизора показывают картинки, в его мозгу формируются некоторые связи приводящие к пониманию зависимости действий над объектом, и к каким результатам эти действия приводят. Но если человек никогда не интересовался как работает телевизор, из каких компонентов он состоит, то он не сможет объяснить что это на самом деле такое, как работает, как это создать с нуля или починить. Это нормально. Инженер или работник завода на котором собирают телевизоры или его компоненты знают порядком больше, в виду обладания &lt;em&gt;большим опытом&lt;/em&gt; в непосредственной области, соответствующим обучением, etc. Надо ли говорить как телевизор будет воспринимать пещерный человек, или коренной житель глубокой тропической деревни, где иногда до сих пор практикуют каннибализм?&lt;/p&gt;
-
-&lt;p&gt;С программированием всё обстоит так-же. Информационные технологии и программирование — дети науки и математики, развивающиеся лучшими умами человечества последние столетия.
-Само собой это сложная тема, и нахрапом её не взять.&lt;/p&gt;
-
-&lt;p&gt;Когда мы программисты-самоучки, мы можем достаточно быстро выучить современный высокоуровневый и выразительный язык программирования, например Python, методы его стандартной библиотеки. Мы интуитивно начинаем собирать в голове образ того что мы хотим добиться от программы, смутно представляем как она работает. Мы, ещё раз, &lt;em&gt;интуитивно&lt;/em&gt; понимаем что такое переменная, что такое лист или массив. Ну есть там какие-то данные, мы их туда записали, можем сделать клац-клац &lt;strong&gt;sorted(my_very_spetial_list)&lt;/strong&gt; и знаем чего ожидать. Несмотря на то что таким образом можно изучить ряд технологий, фреймворков, и довольно успешно выполнять простые прикладные задачи, это представление &lt;strong&gt;неверно&lt;/strong&gt;, контрпродуктивно и ничем хорошим не заканчивается, например мы это очень хорошо прочувствуем как только попытаемся разработать хоть сколько нибудь сложную систему.&lt;/p&gt;
-
-&lt;p&gt;Поэтому единственный правильный способ думать о программе — это думать научно, и так же подходить к изучению программирования. Напрягаем извилины и идём дальше.&lt;/p&gt;
-
-&lt;h2 id=&quot;алгоритм&quot;&gt;Алгоритм&lt;/h2&gt;
-
-&lt;h4 id=&quot;идем-от-интуитивного-к-научному&quot;&gt;Идем от интуитивного к научному.&lt;/h4&gt;
-
-&lt;p&gt;Что такое программирование вообще? Ну, в первую очередь, скажете вы — это написание какой-то программы (текста), которая что-то внутри делает и выдает интересующий нас результат, и будете в общем-то правы. Приемлемо. А что такое программа? Ни больше ни меньше, программа, в самом простом её представлении и правильном понимании — это &lt;em&gt;Алгоритм&lt;/em&gt; достижения требуемого результата. Утрированный пример алгоритма, который я неоднократно встречал во всевозможных книжках начального уровня, это список ваших последовательных дел на завтра:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Проснуться&lt;/li&gt;
-  &lt;li&gt;Потянуться&lt;/li&gt;
-  &lt;li&gt;Надеть носки&lt;/li&gt;
-  &lt;li&gt;Поехать на работу (или дойти до десктопа и начать работать :) )&lt;/li&gt;
-  &lt;li&gt;Прерваться на обед&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;При том каждый из пунктов тоже на самом деле является алгоритмом некоторых последовательных (а может и параллельных) действий, так что в примере выше я скоре описываю &lt;em&gt;список алгоритмов&lt;/em&gt;.
-Так и есть. В любой даже маленькой программе практически всегда есть &lt;em&gt;n&lt;/em&gt; число алгоритмов — вызовы разных функций, каждая из которых что-то вычисляет.
-А если вычисляет — значит алгоритм. Кажется я вас начинаю запутывать, но думаю идея ясна.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Алгоритмом мы называем пошаговое руководство “компьютеру” (исполнителю) что-то нам посчитать. Вычисления могут быть очень простыми, а могут быть и крайне сложными. Правильный способ думать о программе не как о волшебном коде, а как о вполне строгом, &lt;strong&gt;математическом&lt;/strong&gt; описании решения задачи.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Вычислительное железо, как и любой другой объект физического мира подчиняется законам физики. Сила притяжения (по крайней мере на нашей планете) не даст вам прыгнуть кузнечиком в окно второго этажа. Вычислительные ресурсы (центральный процессор, оперативная память, etc) просто так не обработают по щелчку пальцев огромное количество данных — на это потребуется &lt;strong&gt;время&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;К какому бы крутому суперкомпьютеру у вас вдруг не оказался доступ, его мощность играет &lt;em&gt;намного меньшее значение&lt;/em&gt; для производительности программы, чем &lt;em&gt;правильно подобранный алгоритм&lt;/em&gt;. Именно о правильном подборе алгоритма и идет речь в переведенной мною статье, со ссылки на которую начинается этот пост.&lt;/p&gt;
-
-&lt;p&gt;Итак, алгоритм — это вычисление или преобразование &lt;em&gt;входных&lt;/em&gt; данных в интересующие нас &lt;em&gt;выходные&lt;/em&gt; данные. Вы любите ждать? Маловероятно. Проще всего эффективность алгоритма понять как отношение времени, за которое мы получим результат. Чем быстрее — тем лучше.&lt;/p&gt;
-
-&lt;h2 id=&quot;асимптотическая-сложность&quot;&gt;Асимптотическая сложность&lt;/h2&gt;
-
-&lt;p&gt;Так что же влияет на скорость работы алгоритма? Как сказано выше, в первую очередь это правильность самого алгоритма. А точнее — оправданность его использования в &lt;em&gt;конкретных обстоятельствах&lt;/em&gt;. Под конкретным обстоятельствами я имею в виду контекст решаемой нами задачи. В контексте задачи скорость, с которой алгоритм будет вычислять решение, зависит от &lt;em&gt;объема (количества) входных данных&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Научно (математически) сложность алгоритмов оценивается с помощью так называемого &lt;em&gt;асимптотического анализа&lt;/em&gt;. Мы рассматриваем сложность алгоритма посредством анализа &lt;em&gt;зависимости времени и вычислительных ресурсов&lt;/em&gt;, которые потребуются алгоритму в процессе его работы поставленной задачей.&lt;/p&gt;
-
-&lt;p&gt;На практике всё это выражается как математическая функция, которая позволяет понять &lt;em&gt;насколько быстро&lt;/em&gt; будет увеличиваться время работы алгоритма, в зависимости от увеличения обрабатываемого объема данных.&lt;/p&gt;
-
-&lt;p&gt;Иными словами, под &lt;em&gt;асимптотикой&lt;/em&gt; мы понимаем &lt;em&gt;характер&lt;/em&gt; с которым изменяется функция в течении &lt;em&gt;времени&lt;/em&gt; (хуже или лучше она начинает работать), когда её аргумент (количество обрабатываемых данных) &lt;em&gt;стремится&lt;/em&gt; к какой-то точке.&lt;/p&gt;
-
-&lt;p&gt;Только в асимптотическом анализе сложности &lt;em&gt;компьютерных алгоритмов&lt;/em&gt; за эту точку принимается бесконечность, потому что нас интересует не фактическое время выполнения конкретного алгоритма (секунды,etc), а то как будет меняться эффективность работы, если мы будем постоянно и бесконечно повышать размер входных данных.&lt;/p&gt;
-
-&lt;p&gt;Простите меня за то что я несколько раз повторяю одно и то же, но это важно понять:&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Мы оцениваем скорость работы алгоритма в сравнительном &lt;strong&gt;количестве операций&lt;/strong&gt;&lt;/em&gt;. Этим количеством мы и меряем “время”.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;так-что-там-за-о&quot;&gt;Так что там за О?&lt;/h3&gt;
-
-&lt;p&gt;Наиболее часто для оценки роста используются следующие &lt;a href=&quot;https://en.wikipedia.org/wiki/Mathematical_notation&quot;&gt;нотации&lt;/a&gt;:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Ο (О-большое) – верхняя или “наихудшая” оценка сложности. Входные данные подаются самым “неудобным” для алгоритма способом;&lt;/li&gt;
-  &lt;li&gt;o (o-малое) – средняя оценка, данные подаются случайным образом;&lt;/li&gt;
-  &lt;li&gt;Ω (Омега) – нижняя оценка, идеальная ситуация для достижения максимальной скорости алгоритма;&lt;/li&gt;
-  &lt;li&gt;Θ (Тета) – нижняя и верхняя, точная оценка роста временной функции.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Пока мы рассмотрим фундаментальные меры сложности, используемые повсеместно, которые выражаются через O-большое.&lt;/p&gt;
-
-&lt;h4 id=&quot;разбираемся-подробнее&quot;&gt;Разбираемся подробнее&lt;/h4&gt;
-
-&lt;p&gt;Возьмем &lt;em&gt;n&lt;/em&gt; за величину подаваемого объема данных. Тогда верхнюю оценку сложности алгоритма можно записать как &lt;strong&gt;O(f(n))&lt;/strong&gt;. Почему нас интересует именно верхняя или “наихудшая” оценка? Потому что с практической точки зрения нам важно понять этот &lt;em&gt;наихудший вариант развития событий&lt;/em&gt; при котором алгоритму будет скормлено &lt;em&gt;большое количество данных&lt;/em&gt;. Если он будет эффективен в этих условиях, то разумеется будет эффективен и в более “благоприятных”.&lt;/p&gt;
-
-&lt;p&gt;Самые простые для понимания обозначения сложности это &lt;strong&gt;O(1)&lt;/strong&gt; и &lt;strong&gt;O(n)&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;O(1)&lt;/strong&gt; выражает сложность, при которой для выполнения алгоритму потребуется &lt;em&gt;константа&lt;/em&gt; времени. Например взятие элемента из массива по его индексу. Мы точно знаем где элемент находится и просто идём туда. &lt;em&gt;Такие операции не зависят от количества обрабатываемых данных.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;O(n)&lt;/strong&gt; линейно зависит от количества входных данных. В худшем случае такому алгоритму придется проводить какие-то операции с каждым элементом данных. Это, например, обход массива, обход связанного списка или расчет его длинны. Чтобы понять лучше приведу утрированный пример. Представим что задача состоит в том, чтобы определенному существу (алгоритм) нужно выпить некоторое (n) количество воды. Смоделируем ситуацию, в которой воду пьёт не человек, а волшебный троглодит, у которого не желудок, а бездонная черная дыра (n стремится к бесконечности). Пить воду он может только последовательно (ограничения реализации), глоток за глотком, поэтому алгоритм выпивания воды будет иметь линейную сложность O(n) — чем больше воды мы дадим троглодиту на испитие, тем дольше он будет её хлебать.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Классическим вариантом логарифмической сложности &lt;strong&gt;O(log n)&lt;/strong&gt;, где за основание логарифма обычно берется 2, является бинарный (двоичный) поиск. Чем больше входных данных — тем медленнее растет время выполнения алгоритма (тем меньше его сложность). Самый простой и затертый до дыр пример для описания работы двоичного поиска — попытка найти номер телефона нужного вам человека по индексированному справочнику (Отсортирован по фамилиям). Вы можете искать по порядку, запись за записью, страница за страницей. Очевидно что это может занять много времени. Сложность такого глупого поиска можно выразить предыдущей формулой O(n). Представьте что вы в ищите телефон человека не в своей записной книжке, а в справочнике всех абоненов Москвы. Похоже что листать его последовательно (линейно) плохая идея.&lt;/p&gt;
-
-&lt;p&gt;Намного быстрее, зная что справочник упорядочен, открыть его примерно в том месте, где мы ожидаем найти нужного человека. Например мы ищем Фёдора Корнельчука (все совпадения случайны!). Зная алфавит русского языка может показаться что буква К обязательно будет находиться в первой половине справочника, но это не точно. Мы не знаем сколько фамилий на А, Б, и так далее. Может случиться так, что фамилии на К находится во второй половине справочника. Алгоритм Двоичный поиска работает так — мы открываем справочник (массив) посередине и смотрим куда попали, если нам нужно в левую половину (на открытой странице фамилии, например, на букву П), мы отбрасываем правую половину и открываем оставшуюся левую &lt;em&gt;снова посередине&lt;/em&gt;. И так до тех пор пока не найдем Корнельчука.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Сложность алгоритмов сортировки часто выражается как &lt;strong&gt;O(n log n)&lt;/strong&gt;. Время выполнения таких алгоритмов растет быстрее, чем O(n). Можно представить как комбинацию O(log n) и O(n).&lt;/p&gt;
-
-&lt;p&gt;Далее по интенсивности роста идут квадратичные зависимости, например &lt;strong&gt;O(n&lt;sup&gt;2&lt;/sup&gt;)&lt;/strong&gt;. Время выполнения таких алгоритмов растет очень быстро при увеличении объема входных данных (экспоненциально!). Например, два цикла, когда один вложен в другой, каждый из которых работает за O(n). Практически в любом случае это &lt;strong&gt;очень плохая мера&lt;/strong&gt;, которую вообще не стоит определять в своих алгоритмах.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Разбор алгоритмов сортировки и разных структур данных выходит за рамки этого поста. В будущем мы разберем базовые структуры данных и попытаемся оценить их сложность. Надеюсь что теперь стало понятнее о чем шла речь в статье-алгоритме Майкла.&lt;/p&gt;
-
-&lt;p&gt;До новых встреч!&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Алгоритмы" /><category term="ComputerScience" /><summary type="html">Как правильно думать о программе, что такое временная сложность и это самое “О большое”. Давайте разбираться.</summary></entry></feed>
+&lt;p&gt;Помните слова Дяди Бена, имейте совесть, уважайте свои и чужие персональные данные. Если что, карма вас обязательно настигнет!&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Инструменты" /><category term="Информационная_безопасность" /><summary type="html">Да пребудет с вами сила поиска в Google! Или как избавить своего тимлида от 80% глупых вопросов. Слышали что нибудь о так называемых google dorks? Нет? Добро пожаловать под кат!</summary></entry></feed>

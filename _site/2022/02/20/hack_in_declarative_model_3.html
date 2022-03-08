@@ -1,9 +1,9 @@
 <!DOCTYPE html><html lang="ru">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Врубаемся в Декларативную модель - Wannahack.in</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Список списков, итеративные вычисления и прочие муми-тролли - Wannahack.in</title>
 
-<meta name="description" content="Часть 3. Список списков, итеративные вычисления и прочие муми-тролли.">
+<meta name="description" content="Врубаемся в Декларативную модель — Часть 3.">
 <link rel="canonical" href="http://localhost:4000/2022/02/20/hack_in_declarative_model_3.html"><link rel="alternate" type="application/rss+xml" title="Wannahack.in" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
@@ -310,7 +310,7 @@ c19 -42 87 -212 152 -377z"/>
               <a class="button button--secondary button--pill button--sm"
                 href="/archive.html?tag=%D0%9E%D1%82%D1%87%D0%B5%D1%82%D1%8B">Отчеты</a>
             </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 20, 2022</span>
-            </li></ul></div><div class="article__header"><header><h1>Врубаемся в Декларативную модель</h1></header></div><p class="overlay__excerpt">Часть 3. Список списков, итеративные вычисления и прочие муми-тролли.</p></div></div>
+            </li></ul></div><div class="article__header"><header><h1>Список списков, итеративные вычисления и прочие муми-тролли</h1></header></div><p class="overlay__excerpt">Врубаемся в Декларативную модель — Часть 3.</p></div></div>
               </div>
             </div><div class ="main"><div class="grid grid--reverse">
 
@@ -320,11 +320,11 @@ c19 -42 87 -212 152 -377z"/>
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/Article"><meta itemprop="headline" content="Врубаемся в Декларативную модель"><meta itemprop="author" content="Иван Закутний"/><meta itemprop="datePublished" content="2022-02-20T00:00:00+03:00">
+<article itemscope itemtype="http://schema.org/Article"><meta itemprop="headline" content="Список списков, итеративные вычисления и прочие муми-тролли"><meta itemprop="author" content="Иван Закутний"/><meta itemprop="datePublished" content="2022-02-20T00:00:00+03:00">
     <meta itemprop="keywords" content="Программирование,Отчеты"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
-<div class="article__content" itemprop="articleBody"><p>Часть 3. Список списков, итеративные вычисления и прочие муми-тролли. 
+<div class="article__content" itemprop="articleBody"><p>Врубаемся в Декларативную модель — Часть 3. 
 <!--more--></p>
 
 <h3 id="here-we-go-again">Here we go again</h3>
@@ -362,7 +362,7 @@ c19 -42 87 -212 152 -377z"/>
 
 <p>Например, “декларативная” рекурсивная функция вычисляющая длину списка на Python будет выглядеть как-то так:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>list_length(some_list):
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def list_length(some_list):
     if some_list == []
         return 0
     
@@ -396,7 +396,7 @@ c19 -42 87 -212 152 -377z"/>
 
 <p>Рекурсивная-итеративная функция вычисления длины списка будет выглядеть так:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iter_list_length(i, some_list):
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def iter_list_length(i, some_list):
     if some_list == []:
         return 0
     
@@ -446,7 +446,7 @@ c19 -42 87 -212 152 -377z"/>
 
 <p>Тогда функция, основанная на таком типе будет иметь структуру:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>length_1(some_list):
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def length_1(some_list):
     if some_list == []:
         return 0
     
@@ -471,7 +471,7 @@ c19 -42 87 -212 152 -377z"/>
 
 <p>Функция:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>length_2(some_list):
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def length_2(some_list):
     if some_list == []:
         return 0
     
@@ -569,7 +569,7 @@ c19 -42 87 -212 152 -377z"/>
 
 <!-- end custom article footer snippet -->
 </footer>
-<div class="article__section-navigator clearfix"><div class="previous"><span>Предыдущая статья:</span><a href="/2022/02/13/dry_etc.html">Бери и DRY, и так далее</a></div><div class="next"><span>Читать ещё:</span><a href="/2022/02/27/hack_in_declarative_model_4.html">Врубаемся в Декларативную модель</a></div></div></div>
+<div class="article__section-navigator clearfix"><div class="previous"><span>Предыдущая статья:</span><a href="/2022/02/13/dry_etc.html">Бери и DRY, и так далее</a></div><div class="next"><span>Читать ещё:</span><a href="/2022/02/27/hack_in_declarative_model_4.html">Рекурсивные типы и другие Декларативные джедайские техники.</a></div></div></div>
 
 </div>
 
