@@ -27,8 +27,9 @@ layout: article
 key: page-about
 ---
 
-
+{:refdef: style="text-align: center;"}
 <img class="image image--lg" src="https://user-images.githubusercontent.com/78234165/148702979-130e9d75-b040-4013-85f2-2d6e2ad3ea18.jpeg"/>{:.circle}
+{: refdef}
 
 Здравствуйте! Это Иван. Мне 28 лет. Свою [карьеру в IT](https://www.linkedin.com/in/ivan-zakutnii-a43851203/) я начал как с администрирования реляционных баз данных. Через полтора года изменил роль, и с Августа 2021 продолжаю как DevOps инженер.
 

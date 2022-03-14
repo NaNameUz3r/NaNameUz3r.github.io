@@ -1,0 +1,58 @@
+I"<p>Врубаемся в Декларативную модель — Часть 6. 
+<!--more--></p>
+
+<h2 id="data-driven">Data-driven</h2>
+
+<p>Часто на практике нужно выполнить какую то операцию над достаточно большой структурой данных, например провести итеративные вычисления, или обойти одну структуру и вычислить другую, на основе “собранных” в обходе данных.</p>
+
+<p>Как правило, чаще всего такие вычисления проводятся над списками, массивами и деревьями. К спискам применяются операции свертки (FoldL\R), которые мы рассмотрели в прошлом посте. Но существуют и другие популярные техники.</p>
+
+<h3 id="операция-map">Операция Map</h3>
+
+<p>Реализация Map есть почти во всех стандартных библиотеках популярных языков программирования. Эта операция работает со списком, и вычисляет на его основании список такой же длинны, применяя переданную в Map функцию к каждому элементу исходного списка.</p>
+
+<p>С помощью <del>заклинаний</del> программирования высшего порядка, реализовать Map можно как-то так:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def function Map(some_list, some_func)
+
+    def function iterate_map(new_list, list_remaining, some_func)
+        if list_remaining == []:
+            return new_list
+  
+
+        list_head = list_remaining[0]
+        list_tail = list_remaining[1:] 
+        return iterate_map(new_list.insert(0, some_func(list_head)), list_tail, some_func)
+  
+
+    return iterate_map([], some_list, some_func)
+</code></pre></div></div>
+
+<p>Можем передать в Map простую функцию, типа возведения в квадрат, и передать её вторым аргументов. Напоминаю что здесь, раньше и далее сниппеты описаны в “псевдопайтанокоде”. Заварите чай, прочитайте прошлые пару статей, если сходу ничего не понятно, и реализуйте рабочий вариант на своем любимом ЯП :)</p>
+
+<h3 id="операция-filter">Операция Filter</h3>
+
+<p>Filter это ещё одна классическая операция для обработки списков. Она так же принимает вторым аргументом некоторую функцию-предикат, и на выходе отдает список с элементами исходного списка, удовлетворяющими переданный предикат:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def function Filter(some_list, some_func)
+
+    def function iterate_filter(new_list, list_remaining, some_func)
+        if list_remaining == []:
+            return new_list
+
+        list_head = list_remaining[0]
+        list_tail = list_remaining[1:]
+
+        if some_func(list_head):
+            return iterate_filter(new_list.insert(0, list_head), list_tail, some_func)
+        else:
+            return iterate_filter(new_list, list_tail, some_func)
+     
+   
+
+    return iterate_filter([], some_list, some_func)
+</code></pre></div></div>
+
+<p>Снова взываю к вашей фантазии, напрягите волшебный интеллект! Предикат можно придумать, практически любой. Например, если список состоит из целых чисел, можем написать простую функцию которая возвращает true если результата делится на 2 без остатка (четный). Или вообще воткнуть предикат в вызов iterate_filter лямбдой. Если вы прожженый питонист, то я уверен что вы хотя бы раз втыкали лямбды в map или filter!!! :trollface:</p>
+
+:ET
