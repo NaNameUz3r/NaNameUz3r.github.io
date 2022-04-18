@@ -1,0 +1,117 @@
+I"K <p>Продолжаем врубаться в функциональное программирование. Пусть и туго :)
+<!--more--></p>
+
+<p>Всех и повсюду приветствую! Я продолжаю заниматься по ФП курсу, и (имхо!) пришла пора написать ещё немного про фишки F# (и, наверное, вообще ФП языков ML семейства) и порефлексировать.</p>
+
+<h2 id="перегрузка">Перегрузка</h2>
+
+<p>Перегрузка, это такая реализованная в языке “полиморфная” штука, когда при обращениях к функциям или операторам, которые <em>имеют несколько реализаций для разных типов данных</em> компилятор ведет себя по разному. Сами эти реализации и есть “перегрузки”.</p>
+
+<p>В F# система типов ведет себя следующим образом:</p>
+<ul>
+  <li>Когда компилятору “понятно” в контексте обращения, что за тип используется — символ оператора интерпретируется как функция для этого типа;</li>
+  <li>В противном случае используется <em>перегруженный</em> оператор для <em>подходящего</em> типа по умолчанию.</li>
+</ul>
+
+<p>Звучит сложно, но на самом деле тут всё просто. Если какой-то оператор можно применить к целым числам (int), ну значит int и будет считаться <em>типом по умолчанию</em>.</p>
+
+<p>Например у функции:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let addition (x,y) = x + y 
+</code></pre></div></div>
+
+<p>по умолчанию тип будет int -&gt; int. Но что если мы хотим, и заранее знаем, что будем вычислять числа с плавающей точкой? 
+Явно указать тип <em>аргумента</em> в F# можно так:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let addition (x: float, y: float) = x + x
+</code></pre></div></div>
+
+<p>Указать явно тип результата функции:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let addition (x, y) : float = x + x
+</code></pre></div></div>
+
+<p>И, наконец, можно указать явно <em>тип выражения</em>, вычисляемого функцией:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let addition (x, y) = x + x : float
+</code></pre></div></div>
+
+<h2 id="нонфиксная-запись">Нонфиксная запись</h2>
+
+<p>Любые инфиксные операторы можно записать нонфиксной записью. Ну, короче, не 1 + 1, а (+) 1 1.</p>
+
+<p>Просто берем оператор в скобки, и следом перечисляем аргументы. Можно представить это как функцию:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let mul3 = (*)3
+</code></pre></div></div>
+
+<p>Где вызов mul3 2 будет равняться 6. Просто? Просто!</p>
+
+<p>Ну и по сути вызов нонфиксного оператора, который на вход получает один аргумент — функция (хотя тут вообще всё функция, но давайте сохранять трезвость рассудка).</p>
+
+<p>Применение функции работает через <em>левую ассоциацию</em>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>printfn "%b" ((*) 3 2 = ((*)3) 2) // будет true!
+</code></pre></div></div>
+
+<p>Ну как там, с трезвостью?</p>
+
+<h2 id="композиция-и-каррирование">Композиция и каррирование</h2>
+
+<p>Так, это уже серьезные спеллы, первый из которых должен быть нам уже знаком (как минимум интуитивно).</p>
+
+<h3 id="композиция">Композиция</h3>
+
+<p>По-простому — это подход, подразумевающий вызов одних функций в качестве аргументов других. Я уже писал про high-order и вот это всё.
+По-сложному, математически — композиция двух функций x и y (x o g) будет обозначать:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(x o y)(x) = x(y(x)) 
+</code></pre></div></div>
+
+<p>И есть x(a) = a + 5, и y(b) = b * 2, тогда</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(x o y)(b) = x(y(b)) = x(b * 2) = b * 2 + 5
+</code></pre></div></div>
+
+<p style="text-align: center;"><img src="/images/mind_blowing.gif" alt="Взрыв Мозга" /></p>
+<p><em><center>Узнали? Согласны?</center></em></p>
+
+<p>Отставить горячку!</p>
+
+<p>В F# вся эта магия реализуется <em>инфиксным</em> оператором « или » у которых оба параметра — функции.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let x = fun a -&gt; a + 5
+let y = fun b -&gt; b * 2
+let chtoproishodit = x &lt;&lt; y
+
+printfn "%d" (chtoproishodit 5) // посчитает: 5 * 2 + 5 = 15
+
+let ostanovitespojaluista = ((fun y -&gt; y * 20) &lt;&lt; (fun x -&gt; x - 1)) 2 // посчитает: 2 - 1 * 20 = 20 
+</code></pre></div></div>
+
+<p>Всё просто же? Как сказано выше, можно передавать функции в другом порядке с помощью »</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let vseyasno = x &gt;&gt; y // vseyasno 3 = y ( x(3) ) = y ( 8 ) = 16  
+</code></pre></div></div>
+
+<h3 id="каррирование">Каррирование</h3>
+
+<p>Или — <em>частичное применение функций</em>.</p>
+
+<p>Это когда мы передаем функции <em>неполное число аргументов</em>, и в результате получаем… что? функцию!</p>
+
+<p>Как уже говорилось в предыдущем посте по теме, все функции в F# имеют <strong>только один аргумент</strong>, когда мы кортежем передаем несколько аргументов, это по сути (формально) работает как применение функций одного аргумента ко всем аргументам из списка поочередно.</p>
+
+<p>Вот такая каррированая функция f a будет ждать на вход один параметр b:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let f x = fun b -&gt; b * x 
+let mul5 = f 5
+</code></pre></div></div>
+
+<p>Понятно, что вызвав mul5 2 получится 10. В F# допускается ещё более краткая запись без fun:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let f x b = b * x 
+</code></pre></div></div>
+
+<p>Работать будет точно так же.</p>
+:ET

@@ -1,5 +1,315 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ru" /><updated>2022-04-11T01:35:55+03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Wannahack.in</title><subtitle>Врубаемся в программирование
-</subtitle><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><entry xml:lang="ru"><title type="html">Декомпозиция</title><link href="http://localhost:4000/2022/04/10/decomposition.html" rel="alternate" type="text/html" title="Декомпозиция" /><published>2022-04-10T00:00:00+03:00</published><updated>2022-04-10T00:00:00+03:00</updated><id>http://localhost:4000/2022/04/10/decomposition</id><content type="html" xml:base="http://localhost:4000/2022/04/10/decomposition.html">&lt;p&gt;&lt;em&gt;“Совершенство достигнуто не тогда, когда нечего добавить, а тогда, когда нечего убрать.”&lt;/em&gt; — Антуан де Сент-Экзюпери
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ru" /><updated>2022-04-19T01:47:01+03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Wannahack.in</title><subtitle>Врубаемся в программирование
+</subtitle><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><entry xml:lang="ru"><title type="html">Ещё немного про F#</title><link href="http://localhost:4000/2022/04/17/more_about_f.html" rel="alternate" type="text/html" title="Ещё немного про F#" /><published>2022-04-17T00:00:00+03:00</published><updated>2022-04-17T00:00:00+03:00</updated><id>http://localhost:4000/2022/04/17/more_about_f</id><content type="html" xml:base="http://localhost:4000/2022/04/17/more_about_f.html">&lt;p&gt;Продолжаем врубаться в функциональное программирование. Пусть и туго :)
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;p&gt;Всех и повсюду приветствую! Я продолжаю заниматься по ФП курсу, и (имхо!) пришла пора написать ещё немного про фишки F# (и, наверное, вообще ФП языков ML семейства) и порефлексировать.&lt;/p&gt;
+
+&lt;h2 id=&quot;перегрузка&quot;&gt;Перегрузка&lt;/h2&gt;
+
+&lt;p&gt;Перегрузка, это такая реализованная в языке “полиморфная” штука, когда при обращениях к функциям или операторам, которые &lt;em&gt;имеют несколько реализаций для разных типов данных&lt;/em&gt; компилятор ведет себя по разному. Сами эти реализации и есть “перегрузки”.&lt;/p&gt;
+
+&lt;p&gt;В F# система типов ведет себя следующим образом:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Когда компилятору “понятно” в контексте обращения, что за тип используется — символ оператора интерпретируется как функция для этого типа;&lt;/li&gt;
+  &lt;li&gt;В противном случае используется &lt;em&gt;перегруженный&lt;/em&gt; оператор для &lt;em&gt;подходящего&lt;/em&gt; типа по умолчанию.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Звучит сложно, но на самом деле тут всё просто. Если какой-то оператор можно применить к целым числам (int), ну значит int и будет считаться &lt;em&gt;типом по умолчанию&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Например у функции:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let addition (x,y) = x + y 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;по умолчанию тип будет int -&amp;gt; int. Но что если мы хотим, и заранее знаем, что будем вычислять числа с плавающей точкой? 
+Явно указать тип &lt;em&gt;аргумента&lt;/em&gt; в F# можно так:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let addition (x: float, y: float) = x + x
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Указать явно тип результата функции:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let addition (x, y) : float = x + x
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;И, наконец, можно указать явно &lt;em&gt;тип выражения&lt;/em&gt;, вычисляемого функцией:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let addition (x, y) = x + x : float
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;нонфиксная-запись&quot;&gt;Нонфиксная запись&lt;/h2&gt;
+
+&lt;p&gt;Любые инфиксные операторы можно записать нонфиксной записью. Ну, короче, не 1 + 1, а (+) 1 1.&lt;/p&gt;
+
+&lt;p&gt;Просто берем оператор в скобки, и следом перечисляем аргументы. Можно представить это как функцию:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let mul3 = (*)3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Где вызов mul3 2 будет равняться 6. Просто? Просто!&lt;/p&gt;
+
+&lt;p&gt;Ну и по сути вызов нонфиксного оператора, который на вход получает один аргумент — функция (хотя тут вообще всё функция, но давайте сохранять трезвость рассудка).&lt;/p&gt;
+
+&lt;p&gt;Применение функции работает через &lt;em&gt;левую ассоциацию&lt;/em&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;printfn &quot;%b&quot; ((*) 3 2 = ((*)3) 2) // будет true!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ну как там, с трезвостью?&lt;/p&gt;
+
+&lt;h2 id=&quot;композиция-и-каррирование&quot;&gt;Композиция и каррирование&lt;/h2&gt;
+
+&lt;p&gt;Так, это уже серьезные спеллы, первый из которых должен быть нам уже знаком (как минимум интуитивно).&lt;/p&gt;
+
+&lt;h3 id=&quot;композиция&quot;&gt;Композиция&lt;/h3&gt;
+
+&lt;p&gt;По-простому — это подход, подразумевающий вызов одних функций в качестве аргументов других. Я уже писал про high-order и вот это всё.
+По-сложному, математически — композиция двух функций x и y (x o g) будет обозначать:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(x o y)(x) = x(y(x)) 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;И есть x(a) = a + 5, и y(b) = b * 2, тогда&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(x o y)(b) = x(y(b)) = x(b * 2) = b * 2 + 5
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/mind_blowing.gif&quot; alt=&quot;Взрыв Мозга&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;center&gt;Узнали? Согласны?&lt;/center&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Отставить горячку!&lt;/p&gt;
+
+&lt;p&gt;В F# вся эта магия реализуется &lt;em&gt;инфиксным&lt;/em&gt; оператором « или » у которых оба параметра — функции.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let x = fun a -&amp;gt; a + 5
+let y = fun b -&amp;gt; b * 2
+let chtoproishodit = x &amp;lt;&amp;lt; y
+
+printfn &quot;%d&quot; (chtoproishodit 5) // посчитает: 5 * 2 + 5 = 15
+
+let ostanovitespojaluista = ((fun y -&amp;gt; y * 20) &amp;lt;&amp;lt; (fun x -&amp;gt; x - 1)) 2 // посчитает: 2 - 1 * 20 = 20 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Всё просто же? Как сказано выше, можно передавать функции в другом порядке с помощью »&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let vseyasno = x &amp;gt;&amp;gt; y // vseyasno 3 = y ( x(3) ) = y ( 8 ) = 16  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;каррирование&quot;&gt;Каррирование&lt;/h3&gt;
+
+&lt;p&gt;Или — &lt;em&gt;частичное применение функций&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Это когда мы передаем функции &lt;em&gt;неполное число аргументов&lt;/em&gt;, и в результате получаем… что? функцию!&lt;/p&gt;
+
+&lt;p&gt;Как уже говорилось в предыдущем посте по теме, все функции в F# имеют &lt;strong&gt;только один аргумент&lt;/strong&gt;, когда мы кортежем передаем несколько аргументов, это по сути (формально) работает как применение функций одного аргумента ко всем аргументам из списка поочередно.&lt;/p&gt;
+
+&lt;p&gt;Вот такая каррированая функция f a будет ждать на вход один параметр b:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let f x = fun b -&amp;gt; b * x 
+let mul5 = f 5
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Понятно, что вызвав mul5 2 получится 10. В F# допускается ещё более краткая запись без fun:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let f x b = b * x 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Работать будет точно так же.&lt;/p&gt;
+
+&lt;h2 id=&quot;нужно-больше-операторов&quot;&gt;Нужно больше операторов!&lt;/h2&gt;
+
+&lt;p&gt;Тут можно делать свои операторы, а не только функции (сейчас какой-то душный человек вспомнит что оператор тоже функция и пойдет поедет. Я ― помню).&lt;/p&gt;
+
+&lt;p&gt;Для определение своих &lt;em&gt;инфиксных&lt;/em&gt; операторов нам доступны следующие символы:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;! % &amp;amp; * + - . / &amp;lt; = &amp;gt; ? @ ^ | ~
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;А для &lt;em&gt;префиксных&lt;/em&gt; такие последовательности:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;+ - +. -. &amp;amp; &amp;amp;&amp;amp; % %% ~ ~~ ~~~ ~~~~
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Объявление таких операторов нужно делать через скобочную нотацию: (оператор) для инфиксных, и (~оператор), соответственно для префиксных.&lt;/p&gt;
+
+&lt;h2 id=&quot;операторы-применения-функций&quot;&gt;Операторы применения функций&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Есть два таких оператора: “&lt;/td&gt;
+      &lt;td&gt;&amp;gt;” и “&amp;lt;&lt;/td&gt;
+      &lt;td&gt;”, они отправляют значение вправо или влево.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Выражение x&lt;/td&gt;
+      &lt;td&gt;&amp;gt; y и выражение y &amp;lt;&lt;/td&gt;
+      &lt;td&gt;x будут означать одно и то же — “y x”.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Но важный момент в том, что ассоциация этих операторов &lt;strong&gt;левая&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;10 |&amp;gt; 2 |&amp;gt; (+) 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;приведет к ошибке, когда:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;10 |&amp;gt; (2 |&amp;gt; (+)) 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;сработает.&lt;/p&gt;
+
+&lt;h2 id=&quot;ещё-раз-про-кортежи&quot;&gt;Ещё раз про кортежи&lt;/h2&gt;
+
+&lt;p&gt;Итак, мы знаем что с помощью кортежей мы можем схитрить и передать в функцию больше одного аргумента.&lt;/p&gt;
+
+&lt;p&gt;Кортежи могут объединять в себе значения разных типов, это ок. И это потенциально очень мощный инструмент. Рассмотрим несколько фишек.&lt;/p&gt;
+
+&lt;h3 id=&quot;фишки-первого-уровня&quot;&gt;Фишки первого уровня&lt;/h3&gt;
+
+&lt;p&gt;Значения типов в кортежах перевариваются в F# как объекты первого класса. Мы можем использовать их в выражениях, и получать как результат других выражений.&lt;/p&gt;
+
+&lt;p&gt;Можно использовать в качестве элемента кортежа уже связанное ранее значение:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let a = (10, &quot;hello&quot;)
+let b = (a, 100.500)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Последний кортеж получится типа: ((int * string) * float)&lt;/p&gt;
+
+&lt;p&gt;Вычисляются кортежи по порядку слева-направо, и кортежи можно сравнивать, но только если совпадают значения типов их элементов (в том же порядке):&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(5 = 2, &quot;hello&quot;, 1 + 1) = (false, &quot;hello&quot;, 2) // правда!
+(5 = 2, &quot;hello&quot;, 1 + 1) = (&quot;friend&quot;, (10.5, 18)) // парень, не дури, типы не совпали.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;“Легальное” сравнение (когда с типами всё ок), происходит в лексикографическом порядке:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(29, 14, 100) &amp;gt; 11, 0, 101 // не правда!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;кортеж-как-шаблон&quot;&gt;Кортеж как шаблон&lt;/h3&gt;
+
+&lt;p&gt;Мы можем сделать кортеж состоящий только из идентификаторов:
+    let (x, y) = (10, 200) // x = 10, y = 200&lt;/p&gt;
+
+&lt;p&gt;С помощью чего потенциально можем сопоставлять идентификаторы и значения.&lt;/p&gt;
+
+&lt;p&gt;Помните паттерн матчинг? Тут можно так же использовать идентификатор “_” для сопоставления с любыми значениями:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let (_, y) = (1, 2) // y = 2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;превращение-в-овцу&quot;&gt;Превращение в овцу&lt;/h3&gt;
+
+&lt;p&gt;Это про полиморфизм, кто не понял :)&lt;/p&gt;
+
+&lt;p&gt;Пример полиморфной функции с кортежем — функция swap:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let swap (x, y) = (y, x)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Она меняет значения внутри кортежа местами, и типы её параметров полиморфны, то есть определяются другими типами.&lt;/p&gt;
+
+&lt;p&gt;Полиморфный тип, это такой тип, операции над которым могут нормально применяться к другим типам.&lt;/p&gt;
+
+&lt;p&gt;В F# полиморфным типом выступает базовый тип .NET System.Object, таким образом тип функции swap будет:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;System.Object  * System.Object -&amp;gt; System.Object * System.Object
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;рефлексия&quot;&gt;Рефлексия&lt;/h2&gt;
+
+&lt;p class=&quot;error&quot;&gt;Спойлер Алерт!!! Если вы занимаетесь по курсам Сергея Игоревича Бобровского, и не прошли ещё курс по F# — имейте совесть и смелость решить задачки сами. В частности далее будет спойлер к задаче по кастомным операторам 23.4.1.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/serious_cat.jpg&quot; alt=&quot;Котямба&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;center&gt;Я серьезно.&lt;/center&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Задачка следующая:&lt;/p&gt;
+
+&lt;p&gt;В фэнтези-РПГ принята следующая денежная система: в одном золотом 20 серебряных, а в одном серебряном 12 медяков. Суммы в такой системе задаются тройками целых чисел (золотые, серебряные, медяки), например (1, 0, 128) или (32, 23, 5).&lt;/p&gt;
+
+&lt;p&gt;Реализуйте инфиксный оператор .+. , который складывает деньги, представленные в виде троек, и инфиксный оператор .-. , который вычитает деньги. Результат приводите к формату, когда количество медяков не превышает 11, а количество серебряных не превышает 19.&lt;/p&gt;
+
+&lt;p&gt;Посмотрите какую хрень я накодил в первый (ладно, во второй) раз:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let (.+.) x y =
+    let (g1, s1, c1) = x
+    let (g2, s2, c2) = y
+    
+    let total_wallet = (g1 + g2, s1 + s2, c1 + c2)
+    
+    let rec count_coppers = function
+    | (g, s, c) when c &amp;lt;= 11 -&amp;gt; (g, s, c)
+    | (g, s, c) -&amp;gt; count_coppers (g, s + 1, c - 12)
+
+    let rec count_silvers = function
+    | (g, s, c) when s &amp;lt;= 19 -&amp;gt; (g, s, c)
+    | (g, s, c) -&amp;gt; count_silvers (g + 1, s - 20, c)
+
+    let copper_converted = count_coppers total_wallet
+    let converted_wallet = count_silvers copper_converted
+    converted_wallet
+
+
+let (.-.) x y = 
+
+    let (more, less) = 
+        if x &amp;lt; y then
+            (y, x)
+        else
+            (x, y)
+
+    let (g1, s1, c1) = more
+    let (g2, s2, c2) = less
+
+    let rec count_coppers = function
+    | (g, s, c) when c &amp;lt;= 11 -&amp;gt; (g, s, c)
+    | (g, s, c) -&amp;gt; count_coppers (g, s + 1, c - 12)
+
+    let rec count_silvers = function
+    | (g, s, c) when s &amp;lt;= 19 -&amp;gt; (g, s, c)
+    | (g, s, c) -&amp;gt; count_silvers (g + 1, s - 20, c)
+
+    let bigger_copper_converted = count_coppers more
+    let bigger_converted_wallet = count_silvers bigger_copper_converted
+    
+    let smaller_copper_converted = count_coppers less
+    let smaller_converted_wallet = count_silvers smaller_copper_converted
+
+    let (bigger_g, bigger_s, bigger_c) = bigger_converted_wallet
+    let (smaller_g, smaller_s, smaller_c) = smaller_converted_wallet
+    (bigger_g - smaller_g, bigger_s - smaller_s, bigger_c - smaller_c)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ну, справедливости ради, оно работает и прошло тесты. Но это какая то жесть. Пусть я и попытался применять рекурсию, здесь налицо недопонимание принципов хорошего, ясного программирования. И вообще халатность. Например в реализации оператора .-. не кажется ли вам что DRY не пахнет?&lt;/p&gt;
+
+&lt;p&gt;Эталонное решение выглядит следующим образом:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let rec iter = function
+| (a, b, c) when c &amp;gt; 11 -&amp;gt; iter (a, b + (c / 12), c % 12)
+| (a, b, c) when b &amp;gt; 19 -&amp;gt; iter (a + (b / 20), b % 20, c)
+| (a, b, c) when c &amp;lt; 0 &amp;amp;&amp;amp; b &amp;gt; 0 -&amp;gt; iter (a, b - 1, c + 12)
+| (a, b, c) when b &amp;lt; 0 &amp;amp;&amp;amp; a &amp;gt; 0 -&amp;gt; iter (a - 1, b + 20, c)
+| (a, b, c) when c &amp;lt; 0 &amp;amp;&amp;amp; a &amp;gt; 0 -&amp;gt; iter (a - 1, b + 19, c + 12)
+| (a, b, c) -&amp;gt; (a, b, c)
+
+let (.+.) (a, b, c) (x, y, z) = iter (a + x, b + y, c + z)
+let (.-.) (a, b, c) (x, y, z) = iter (a - x, b - y, c - z)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ради той же справедливости попытаюсь оправдаться, что в первом своем нерабочем решении я использовал деление с остатком, но там была какая то императивная дичь с условными операторами, и компилятор ругался матом. Почему я не додумался забабахать рекурсивный паттерн матчинг… Хороший вопрос. Просто посмотрите на эту красоту, насколько это более ясно и коротко может быть выражено в коде. Паттерн матчинг воистину крутая штука!&lt;/p&gt;
+
+&lt;p&gt;Век живи — век учись. А дурнем и помрешь!&lt;/p&gt;
+
+&lt;p&gt;Слава Алонзо Черчу! Миру Мир! Я пошел.&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Отчеты" /><category term="Функциональное_программирование" /><summary type="html">Продолжаем врубаться в функциональное программирование. Пусть и туго :)</summary></entry><entry xml:lang="ru"><title type="html">Декомпозиция</title><link href="http://localhost:4000/2022/04/10/decomposition.html" rel="alternate" type="text/html" title="Декомпозиция" /><published>2022-04-10T00:00:00+03:00</published><updated>2022-04-10T00:00:00+03:00</updated><id>http://localhost:4000/2022/04/10/decomposition</id><content type="html" xml:base="http://localhost:4000/2022/04/10/decomposition.html">&lt;p&gt;&lt;em&gt;“Совершенство достигнуто не тогда, когда нечего добавить, а тогда, когда нечего убрать.”&lt;/em&gt; — Антуан де Сент-Экзюпери
 &lt;!--more--&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;старый-мастер&quot;&gt;Старый мастер&lt;/h2&gt;
@@ -1293,116 +1603,4 @@ print(for_list_elements_acc([3,2,1], my_sum, 0))
 
 &lt;p&gt;Можно уйти в словоблудие и сказать, что оба эти принципа применимы не только как ценности проектирования программных систем, и исходят из более “фундаментальных” личностных качеств.&lt;/p&gt;
 
-&lt;p&gt;Но я оставлю это вам как пищу для размышления.&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Инструменты" /><category term="Размышления" /><summary type="html">Рассматриваем пару универсальных принципов разработки.</summary></entry><entry xml:lang="ru"><title type="html">Декларативное программирование и рекурсия.</title><link href="http://localhost:4000/2022/02/12/hack_in_declarative_model_2.html" rel="alternate" type="text/html" title="Декларативное программирование и рекурсия." /><published>2022-02-12T00:00:00+03:00</published><updated>2022-02-12T00:00:00+03:00</updated><id>http://localhost:4000/2022/02/12/hack_in_declarative_model_2</id><content type="html" xml:base="http://localhost:4000/2022/02/12/hack_in_declarative_model_2.html">&lt;p&gt;Врубаемся в Декларативную модель — Часть 2. 
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;p&gt;Здравствуйте! Мы продолжаем изучать декларативную вычислительную модель. На этой неделе я добрался до более практичных тем, и начну рассказывать вам о том, как собственно устроено программирование в декларативном “стиле”.&lt;/p&gt;
-
-&lt;p&gt;В прошлый раз мы разобрали декларативную модель с теоретической точки зрения, и в общих чертах должны хорошо понимать её внутреннее устройство.&lt;/p&gt;
-
-&lt;h2 id=&quot;польза-декларативной-модели&quot;&gt;Польза декларативной модели&lt;/h2&gt;
-&lt;h4 id=&quot;детерминированный-конструктор&quot;&gt;Детерминированный “конструктор”&lt;/h4&gt;
-&lt;p&gt;Одна из главных крутостей декларативного программирования заключается в том, что декларативные программы &lt;strong&gt;композиционны&lt;/strong&gt;. Это значит, что программа состоит из некоторых &lt;em&gt;компонентов&lt;/em&gt;, каждый из которых, благодаря заложенным в вычислительной модели принципам, является строго и ясно ограниченной частью программы.&lt;/p&gt;
-
-&lt;p&gt;В декларативной программе каждый компонент всегда хорошо различим, у него есть определенные входы и выходы. При этом компонент не обязательно является “малым” фрагментом кода, функций или процедурой. Процедура лишь частный вид компонента, и в более “сложном” компоненте могут быть определены другие, сохраняя всю декларативную ясность и мощь.&lt;/p&gt;
-
-&lt;p&gt;Композиционность достигается благодаря свойственным декларативной модели качествам. Напоминаю, мы не используем “динамические переменные”, не храним внутренние состояния процедур\функций, не передаем их куда-то вовне. Получается что компоненты, “сущности сами в себе”, или по русски — независимые сущности. Выход из одной декларативной операции становится входом для другой, сайд-эффекты, фактически — невозможны.&lt;/p&gt;
-
-&lt;p&gt;Благодаря этому качеству в декларативной модели мы можем разрабатывать сложные и &lt;em&gt;надежные&lt;/em&gt; системы.&lt;/p&gt;
-
-&lt;h4 id=&quot;ясно-понятно&quot;&gt;Ясно, понятно&lt;/h4&gt;
-
-&lt;p&gt;Вторая сила декларативного программирования вытекает и связана с первой — декларативные программы достаточно просты для понимания. Мы можем легко рассуждать о них сквозь призму, например, логического анализа. Чтобы понять программу в целом, нам нужно лишь понять все её компоненты.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Исходя из этого мы можем предположить, что можно забить на все остальные вычислительные модели, хорошо разобраться в декларативной, и все программы описывать только в ней. Жаль что это невозможно. Если бы все было так просто, то другие модели бы просто не появились. Дело в том, что задачи бывают разные, и для их решения подходят разные парадигмы.&lt;/p&gt;
-
-&lt;p&gt;Но хорошая новость в том, что на уровне разработки (написания) кода отдельных функций или модулей (ещё это называется &lt;em&gt;programming-in-small&lt;/em&gt;), декларативный стиль применять можно &lt;strong&gt;всегда!&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;На самом деле так &lt;strong&gt;нужно&lt;/strong&gt; поступать. Это залог хорошего продукта не только в виде отдельных программных модулей, но и качественной программной системы в целом (&lt;em&gt;programming-in-large&lt;/em&gt;).&lt;/p&gt;
-
-&lt;p&gt;Компоненты не должны иметь лишних связей, потому что это приводит к запутыванию и усложнению системы. В такой ситуации мы не можем говорить о композиционности или понятности. Как разобраться в отдельной части, если она явным образом зависит от кучи других? А те, в свою очередь, от кучи других? А если не явным? Брррр.&lt;/p&gt;
-
-&lt;p&gt;Другие вычислительные модели, свойством которых является тесная связь многих компонентов, &lt;em&gt;нужно использовать изолировано и в ограниченном количестве модулей&lt;/em&gt;. Мы пытаемся, как-бы, “компонизировать” части системы со сложными связями, чтобы сами эти части становились &lt;strong&gt;декларативными компонентами&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Вот вам новая мантра:&lt;/p&gt;
-
-&lt;p class=&quot;info&quot;&gt;Я делаю как можно больше компонентов системы декларативными.&lt;/p&gt;
-
-&lt;p&gt;Говорят, если повторять её каждый раз когда садишься программировать, и применять на практике — станешь хорошим инженером.&lt;/p&gt;
-
-&lt;h2 id=&quot;рекурсия&quot;&gt;Рекурсия&lt;/h2&gt;
-
-&lt;p&gt;Как много будоражащего ум в этом слове (пока не разобраться :) ). 
-Помню в детстве я сидел в парикмахерской, и места там были напротив друг друга у противоположных стен, и зеркала соответственно. Слово рекурсия я тогда не знал, но залип &lt;em&gt;глубоко&lt;/em&gt; и надолго.&lt;/p&gt;
-
-&lt;p&gt;В программировании рекурсией называют “прием”, когда в теле функции вызывается эта же функция. На самом деле рекурсия может применяться по разному, самый простой и частный случай это &lt;em&gt;прямая&lt;/em&gt; или простая рекурсия, когда функцию явно вызывает “саму себя”. Ещё рекурсии бывают &lt;em&gt;косвенные&lt;/em&gt; или — &lt;em&gt;непрямые&lt;/em&gt;. Это более хитрый способ, когда, например, функция А, вызывает функцию В, которая в свою очередь снова вызывает функцию А, и так далее.&lt;/p&gt;
-
-&lt;p&gt;Если рекурсивный вызов в теле функции является последним оператором, то в этом случае такую рекурсию называют &lt;em&gt;хвостовой&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Глубина&lt;/em&gt; рекурсии определяется количеством рекурсивных вызовов. Как это работает? Ну, в общем, есть такая структура данных &lt;strong&gt;стек&lt;/strong&gt;. Наивно-абстрактно мы сейчас можем представить её как некоторую “вертикальную стопку” записей. Мы можем складывать туда записи одна за другой, и извлекать в обратном порядке, то есть забирать “верхние” записи поочередно.&lt;/p&gt;
-
-&lt;p&gt;Например, возьмем рекурсивную функцию А и изначально пустой стек. В вызове А0 что-то происходит, этот вызов с его “окружением” помещается в виде записи в стек, и в процессе выполнения происходит рекурсивный вызов А1. Ситуация повторяется, А1 помещается в стек следом за А0, вызывается А2, и так далее.&lt;/p&gt;
-
-&lt;p&gt;На самом деле это может происходить бесконечно, до тех пор пока не кончится память и стек не будет переполнен (stack overflow). Во избежание подобного в рекурсивных функциях определяют конечное условие, в случае удовлетворения которого функция должна что-то вернуть, а не снова провалиться в дальнейшую рекурсию.&lt;/p&gt;
-
-&lt;p&gt;Это ещё называется “базовым случаем” — условие в рекурсивной функции, при котором не происходит рекурсивный вызов и функция завершая, как правило вернув какое-то значение. Соответственно, если проверка базового случая не проходит, функция выполняется дальше в “рекурсивный случай”.&lt;/p&gt;
-
-&lt;p&gt;Возвращаясь к примеру выше, представим что в вызове А4 это конечное условие было удовлетворено. В результате мы имеем стек, условно, такого вида А0 -&amp;gt; А1 -&amp;gt; А2 - A3 -&amp;gt; A4. Стрелки в данном случае отображают последовательность рекурсивных вызовов. Получается, что результат работы А4 вернется в А3, оттуда в А2, А1, и наконец в изначальный вызов А0 (который в общем тоже имеет какой-то выход, в данном случае это не важно).&lt;/p&gt;
-
-&lt;p&gt;Если вы смотрели мультик Гравити Фолз, то должны помнить что там была такая бездонная яма, в которую что не упади, обязательно рано или поздно вылетит назад. Можно представить рекурсивные вызовы и стек таким образом, для запоминания.&lt;/p&gt;
-
-&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/botomless_pit.gif&quot; alt=&quot;Стэн в яме&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;&lt;center&gt;Дядюшка Стен ждет конечного условия, или пока стек переполнится. &lt;/center&gt;&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Очевидно что бездумное использование рекурсии может накладывать существенные расходы памяти.&lt;/p&gt;
-
-&lt;h3 id=&quot;что-происходит&quot;&gt;Что происходит?&lt;/h3&gt;
-
-&lt;p&gt;Иван, при чем тут рекурсия? Этот пост про программирование в декларативной модели был. Ага! Я не отошел от темы.&lt;/p&gt;
-
-&lt;p&gt;Сейчас мы уже знаем всё что нужно, чтобы применять “декларативщину” на практике. Подытожим.&lt;/p&gt;
-
-&lt;p&gt;Для соблюдения декларативной модели нам нужно, во-первых, использовать переменные исключительно для однократного присваивания. Во-вторых, использовать простые (арифметические) операции над исконно декларативными типами данных — списками и записями. В-третьих, комбинировать декларативные операции, получая декларативные операции в результате (компонуем по полной!).&lt;/p&gt;
-
-&lt;p&gt;Так а что с этим всем делать? Комбинировать компоненты декларативной программы по правилам &lt;strong&gt;программирования высшего порядка&lt;/strong&gt;! Звучит серьезно, правда?&lt;/p&gt;
-
-&lt;p&gt;Программирование высшего порядка, это когда в модели функции могут получать в качестве аргументов другие функции (как параметры), и &lt;em&gt;возвращать их в качестве результата&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Догадались, нет?&lt;/p&gt;
-
-&lt;p&gt;Технически корректной реализацией декларативной программы будет её описание как &lt;strong&gt;чистых рекурсивных функций&lt;/strong&gt; организованных согласно &lt;strong&gt;программированию высшего порядка&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Помните, в самом начале первой части мы говорили о том, что декларативная модель, это когда мы описываем “что должно получиться в итоге”, а как этого результата достигать? Вот это как раз и реализуется по канону высшего порядка, рассмотрим совсем простой псевдокод.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function ИтерацияВычислений(ОбрабатываемыеДанные, ФункцияПроверкиРезультата, ФункцияВычисляющаяЧтоТо):
-    if ФункцияПроверкиРезультата(ОбрабатываемыеДанные) == True:
-        Возвращаем ОбрабатываемыеДанные
-    env
-
-    ОбрабатываемыеДанные = ФункцияВычисляющаяЧтоТо(ОбрабатываемыеДанные)
-    return ИтерацияВычислений(ОбрабатываемыеДанные, ФункцияПроверкиРезультата, ФункцияВычисляющаяЧтоТо)
-end
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Разберем по порядку. Всё вместе называется &lt;strong&gt;абстракцией управления&lt;/strong&gt;. Это как раз пример программирования высшего порядка.
-У нас есть функция которая вызывается рекурсивно — &lt;em&gt;ИтерацияВычислений&lt;/em&gt;. В данном примере я назвал её так, потому что &lt;strong&gt;итеративные вычисления&lt;/strong&gt; это &lt;em&gt;частный случай рекурсии.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;ФункцияПроверкиРезультата&lt;/em&gt;, в данном случае, это как раз то, с помощью чего определяется то самое условие “что должно получиться в итоге”.&lt;/p&gt;
-
-&lt;p&gt;Ну а &lt;em&gt;ФункцияВычисляющаяЧтоТо&lt;/em&gt;, это рабочая лошадка, производящая фактические преобразования исходного значения “&lt;em&gt;ОбрабатываемыеДанные&lt;/em&gt;”&lt;/p&gt;
-
-&lt;p&gt;Всё это мы можем обернуть в ещё одну функцию, в которую аргументом будут передавать лишь ОбрабатываемыеДанные, которые нужно преобразовать способом, скрытым внутри реализации. В результате мы получаем компонент, который может использоваться в проекте. В прошлой части я писал о &lt;em&gt;лингвистических абстракциях&lt;/em&gt;. Подобный компонент, если он должен часто использоваться в проекте, может быть представлен как раз в виде такой абстракции.&lt;/p&gt;
-
-&lt;p&gt;Учитывая правило, о котором мы уже говорили — использование простых арифметических операций, глубокий стек рекурсивных вызовов формироваться не будет. Во-первых, потому что мы имеем четко определенное конечное состояние, которое проверяется “ФункциейПроверкиРезультатов”. Во-вторых, такие простые вычисления хорошо оптимизируются компиляторами.&lt;/p&gt;
-
-&lt;h2 id=&quot;резюме&quot;&gt;Резюме&lt;/h2&gt;
-
-&lt;p&gt;Если декларативная модель — это исток всех остальных моделей, их сердцевина. То сердцевина самой декларативной модели — рекурсивные вычисления! Это чрезвычайно мощный инструмент с огромным потенциалом. Кроличья нора &lt;em&gt;очень глубока&lt;/em&gt;, но ослепительно проста и прекрасна.&lt;/p&gt;
-
-&lt;p&gt;В следующий раз мы разберемся в том, что списки, на самом деле &lt;strong&gt;рекурсивный тип данных!&lt;/strong&gt; и продолжим гнаться за декларативным белым кроликом.&lt;/p&gt;
-
-&lt;p&gt;Будьте здоровы.&lt;/p&gt;
-
-&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/images/white_rabbits.gif&quot; alt=&quot;Рекурсивные кролики&quot; /&gt;&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Отчеты" /><category term="Декларативная_модель" /><summary type="html">Врубаемся в Декларативную модель — Часть 2.</summary></entry></feed>
+&lt;p&gt;Но я оставлю это вам как пищу для размышления.&lt;/p&gt;</content><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><category term="Программирование" /><category term="Инструменты" /><category term="Размышления" /><summary type="html">Рассматриваем пару универсальных принципов разработки.</summary></entry></feed>
