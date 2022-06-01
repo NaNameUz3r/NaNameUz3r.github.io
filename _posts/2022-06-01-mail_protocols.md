@@ -12,7 +12,7 @@ article_header:
   type: overlay
   align: left
   background_image:
-    src: /header_images/http.jpg
+    src: /header_images/emails.jpg
 ---
 
 Немного о том как письма в интернете ходят.
