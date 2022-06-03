@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ru" /><updated>2022-06-01T17:23:09+03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Wannahack.in</title><subtitle>Врубаемся в программирование
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ru" /><updated>2022-06-03T09:47:56+03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Wannahack.in</title><subtitle>Врубаемся в программирование
 </subtitle><author><name>Иван Закутний</name><email>zakutnii.ivan@gmail.com</email></author><entry xml:lang="ru"><title type="html">Обзор DNS</title><link href="http://localhost:4000/2022/06/01/DNS.html" rel="alternate" type="text/html" title="Обзор DNS" /><published>2022-06-01T00:00:00+03:00</published><updated>2022-06-01T00:00:00+03:00</updated><id>http://localhost:4000/2022/06/01/DNS</id><content type="html" xml:base="http://localhost:4000/2022/06/01/DNS.html"><![CDATA[<p>Краткий обзор на DNS или как дозвониться в библиотеку, бабуля?</p>
 
 <!--more-->
@@ -813,25 +813,9 @@ let mul5 = f 5
 
 <h2 id="операторы-применения-функций">Операторы применения функций</h2>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Есть два таких оператора: “</td>
-      <td>&gt;” и “&lt;</td>
-      <td>”, они отправляют значение вправо или влево.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Есть два таких оператора: “|&gt;” и “&lt;|”, они отправляют значение вправо или влево.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Выражение x</td>
-      <td>&gt; y и выражение y &lt;</td>
-      <td>x будут означать одно и то же — “y x”.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Выражение x |&gt; y и выражение y &lt;| x будут означать одно и то же — “y x”.</p>
 
 <p>Но важный момент в том, что ассоциация этих операторов <strong>левая</strong>:</p>
 
