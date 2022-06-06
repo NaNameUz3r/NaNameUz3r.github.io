@@ -17,7 +17,7 @@ article_header:
 
 Врубаемся в Декларативную модель — Часть 5. 
 <!--more--> 
-
+[Читать предыдущий пост](/2022/02/27/hack_in_declarative_model_4.html)
 ## Колдуем по взрослому
 
 Программирование высшего порядка. Что может прийти на ум сперва...
@@ -250,5 +250,4 @@ article_header:
 
 Enough for today! See y'all. Peace and love. 
 
-
-
+[Читать дальше](/2022/03/13/hack_in_declarative_model_6.html)
